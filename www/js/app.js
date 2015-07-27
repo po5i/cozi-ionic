@@ -95,11 +95,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.chef', {
-    url: '/chefs/:playlistId',
+    url: '/chefs/:chefUsername',
     views: {
       'menuContent': {
         templateUrl: 'templates/chef.html',
-        controller: 'PlaylistCtrl'
+        controller: 'ChefCtrl'
       }
     }
   });

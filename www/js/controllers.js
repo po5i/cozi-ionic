@@ -56,5 +56,6 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('ChefCtrl', function($scope, $stateParams) {
+  $scope.username = $stateParams.chefUsername;
 });
