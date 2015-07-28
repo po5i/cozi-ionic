@@ -11,6 +11,7 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.imgpath = window.location.href.replace(window.location.hash,"");
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
