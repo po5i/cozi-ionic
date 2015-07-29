@@ -26,6 +26,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart'])
       StatusBar.styleDefault();
     }
   });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {

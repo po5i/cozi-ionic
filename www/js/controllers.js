@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, ngCart) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,8 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  $rootScope.api_url = "http://162.243.230.228";
 
   ngCart.setTaxRate(7.5);
   ngCart.setShipping(2.99);  
@@ -55,7 +57,31 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+
+
+  $scope.filters = { };
+
+  var menuPromise = $http.get($rootScope.api_url+'/api/dishs/',{
+      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+  });
+
+
+  menuPromise.success(function(data, status, headers, config){
+      $scope.menu = data;
+  });
+
+  menuPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  
+
+
 })
+
+
+
 
 .controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
@@ -67,6 +93,9 @@ angular.module('starter.controllers', [])
     { title: 'Cowbell', id: 6 }
   ];
 })
+
+
+
 
 .controller('ChefCtrl', function($scope, $stateParams) {
   $scope.username = $stateParams.chefUsername;
