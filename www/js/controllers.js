@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state, ngCart) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -8,6 +8,9 @@ angular.module('starter.controllers', [])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
+
+  ngCart.setTaxRate(7.5);
+  ngCart.setShipping(2.99);  
 
   // Form data for the login modal
   $scope.loginData = {};
@@ -23,6 +26,14 @@ angular.module('starter.controllers', [])
   $scope.doReview = function () {
       $state.go('app.rate');
   };
+
+  $scope.checkout = function() {
+      $state.go('app.request2');
+  }
+
+  $scope.doCheckout = function() {
+    console.log(ngCart.getItems());
+  }
 
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {

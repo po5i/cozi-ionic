@@ -2,6 +2,14 @@
   <ion-content>
     
     <div class="item item-divider">
+    	<i class="icon ion-android-cart"></i> Carrito de compras
+  	</div>
+  	<div class="list">
+  		<ngcart-cart></ngcart-cart>
+  		<!--ngcart-checkout service="log">Aceptar</ngcart-checkout-->
+  	</div>
+
+  	<div class="item item-divider">
     	<i class="icon ion-ios-nutrition"></i> Salud & Ingredientes
   	</div>
   	<div class="list">
@@ -42,7 +50,7 @@
 	    <span class="input-label">Telefono</span>
 	    <input type="text" placeholder="Por si acaso">
 	  </label>
-	  <button class="button button-block button-positive">
+	  <button class="button button-block button-positive" ng-click="doCheckout()">
 		  Realizar pedido
 	  </button>
 

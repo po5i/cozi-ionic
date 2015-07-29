@@ -1,4 +1,11 @@
 <ion-view view-title="Menú">
+	<ion-nav-buttons side="secondary">
+      <button class="button button-clear" ng-click="checkout()">
+        <i class="icon ion-android-cart"></i>
+      </button>
+      <ngcart-summary></ngcart-summary>
+    </ion-nav-buttons>
+
   <ion-content>
 
     <div class="list card" ng-repeat="n in [1,2,3,4]">
@@ -25,9 +32,9 @@
 	    <i class="icon ion-social-usd"></i>
 	    5,000
 	  </a>
-	  <a class="item item-icon-left assertive" href="#/app/request2">
+	  <a class="item item-icon-left assertive">
 	    <i class="icon ion-fork"></i>
-	    Ordenar
+	    <ngcart-addtocart id="item1" name="Pollo Imaginario Especial" price="5000" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>
 	  </a>
 
 	</div>
