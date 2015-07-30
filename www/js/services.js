@@ -15,16 +15,22 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
         },
         authenticate: function(credentials, callback) {
             var backend = "auth";
+            var deferred = $q.defer();
+
             $http.post($rootScope.api_url+'/api-token/login/' + backend + '/', credentials ).success(function(data,status) {
                 if(status > 400){
                     $rootScope.authenticated = false;
                 }
                 else{
+                    //console.log(data);
                     if (data.token) {
                         $rootScope.authenticated = true;
                         $rootScope.currentUser = data;       
                         localStorageService.set('currentUser',data);
                         localStorageService.set('backend',backend);
+                        deferred.resolve(data);
+
+                        $rootScope.auth_data = data;
                     } else {
                         $rootScope.authenticated = false;
                     }
@@ -69,9 +75,9 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                             alert("Ha ocurrido un error "+status);
                         }
                         else{
-                            //console.log("login success");
                             //console.log(data);
                             deferred.resolve(data);
+                            $rootScope.auth_data = data;
 
                             if(data.username){
                                 $rootScope.currentUser = data;

@@ -55,7 +55,7 @@ angular.module('starter.controllers', [])
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
     //console.log('Doing login', $scope.loginData);
-    oauthService.authenticate($scope.loginData, function() {
+    oauthService.authenticate($scope.loginData, function(data) {
       if ($rootScope.authenticated) {
           $scope.error = false;    
           $scope.loginData = {};
@@ -80,6 +80,7 @@ angular.module('starter.controllers', [])
           if (oauthService.isReady()) {
               //$scope.username = data.username;
               //if the authorization is successful, hide the connect button and display the tweets
+              
               $scope.modal.hide();
           }
           else{
@@ -101,7 +102,7 @@ angular.module('starter.controllers', [])
   $scope.filters = { };
 
   var menuPromise = $http.get($rootScope.api_url+'/api/dishes/',{
-      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+      //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
   });
   menuPromise.success(function(data, status, headers, config){
       $scope.menu = data;
@@ -143,7 +144,7 @@ angular.module('starter.controllers', [])
   $scope.endorsements = {}
 
   var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
-      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+      //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
   });
   chefPromise.success(function(data, status, headers, config){
       $scope.chef = data;
@@ -153,8 +154,7 @@ angular.module('starter.controllers', [])
   });
 
   var endorsementsPromise = $http.get($rootScope.api_url+'/api/endorsements?chef_id='+$scope.chef_id,{
-      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
-      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+      //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
   });
   endorsementsPromise.success(function(data, status, headers, config){
       $scope.endorsements = data;
