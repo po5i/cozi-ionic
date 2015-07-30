@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -16,7 +16,7 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {};
-  $scope.imgpath = window.location.href.replace(window.location.hash,"");
+  $scope.imgpath = window.location.href.replace(window.location.hash,""); //temp,debug
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -62,21 +62,20 @@ angular.module('starter.controllers', [])
 
   $scope.filters = { };
 
-  var menuPromise = $http.get($rootScope.api_url+'/api/dishs/',{
+  var menuPromise = $http.get($rootScope.api_url+'/api/dishes/',{
       //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
   });
-
-
   menuPromise.success(function(data, status, headers, config){
       $scope.menu = data;
   });
-
   menuPromise.error(function(data, status, headers, config){
       console.log("Error");
   });
 
   
 
+
+  
 
 })
 
@@ -97,6 +96,30 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefCtrl', function($scope, $stateParams) {
-  $scope.username = $stateParams.chefUsername;
+.controller('ChefCtrl', function($scope, $stateParams, $http, $rootScope) {
+  $scope.chef_username = $stateParams.chefUsername;
+  $scope.chef_id = $stateParams.chefId;
+  $scope.chef = {}
+  $scope.endorsements = {}
+
+  var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
+      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+  });
+  chefPromise.success(function(data, status, headers, config){
+      $scope.chef = data;
+  });
+  chefPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  var endorsementsPromise = $http.get($rootScope.api_url+'/api/endorsements?chef_id='+$scope.chef_id,{
+      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+      //headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+  });
+  endorsementsPromise.success(function(data, status, headers, config){
+      $scope.endorsements = data;
+  });
+  endorsementsPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
 });
