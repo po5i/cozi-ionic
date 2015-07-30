@@ -1,11 +1,14 @@
-<ion-view view-title="Perfil de {{username}}">
+<ion-view view-title="Perfil de {{chef_username}}">
   <ion-content>
 
     <div class="list card">
 
+	  <div class="item item-image">
+	    <img ng-src="{{chef.user.profile.avatar}}">
+	  </div>
+
 	  <div class="item item-avatar">
-	    <img ng-src="{{imgpath}}/img/chef.jpg">
-	    <h2>Carlos Villavicencio</h2>
+	    <h2>{{chef.user.first_name}} {{chef.user.last_name}}</h2>
 	    <div>
 		    <i class="icon ion-android-star"></i>
 		    <i class="icon ion-android-star"></i>
@@ -16,44 +19,41 @@
 	  </div>
 
 	  <div class="item item-text-wrap">
-	    Experimentado chef con 10 años de experiencia en cocina Ecuatoriana.
+	    {{chef.bio}}
 	  </div>
 
 	  <a class="item item-icon-left balanced">
 	    <i class="icon ion-coffee"></i>
-	    carnes, vegetariana, sushi
+	    {{chef.experience}}
 	  </a>
-	  <a class="item item-icon-left balanced">
+	  <!--a class="item item-icon-left balanced">
 	    <i class="icon ion-thumbsup"></i>
-	    Hotel Sheraton, Hoten Wyndham
-	  </a>
+	    Texto
+	  </a-->
 	  
 	  <a class="item item-icon-left assertive" href="#/app/request2">
 	    <i class="icon ion-social-facebook"></i>
-	    facebook-po5i
+	    {{chef.facebook}}
 	  </a>
 	  <a class="item item-icon-left assertive" href="#/app/request2">
 	    <i class="icon ion-social-twitter"></i>
-	    @po5i
+	    @{{chef.twitter}}
 	  </a>
 	  <a class="item item-icon-left assertive" href="#/app/request2">
 	    <i class="icon ion-social-linkedin"></i>
-	    carlos.villavicencio
+	    {{chef.linkedin}}
 	  </a>
 	  <a class="item item-icon-left assertive" href="#/app/request2">
 	    <i class="icon ion-social-instagram-outline"></i>
-	    po5i
+	    {{chef.instagram}}
 	  </a>
 	  
 	  <div class="item item-text-wrap">
-	    <p>Su cocina es exquisita, una delicia para paladares exigentes.</p>
-	    <p><b>John Doe</b></p>
-	    <p>&nbsp;</p>
-	    <p>Su cocina es exquisita, una delicia para paladares exigentes.</p>
-	    <p><b>John Doe</b></p>
-	    <p>&nbsp;</p>
-	    <p>Su cocina es exquisita, una delicia para paladares exigentes.</p>
-	    <p><b>John Doe</b></p>
+	    <div class="endorsement" ng-repeat="endorsement in endorsements">
+		    <p>{{endorsement.endorsement}}</p>
+		    <p><b>{{endorsement.user.first_name}} {{endorsement.user.last_name}}</b></p>
+		    <p>&nbsp;</p>
+	    </div>
 	  </div>
 
 	</div>

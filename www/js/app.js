@@ -26,6 +26,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart'])
       StatusBar.styleDefault();
     }
   });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -101,7 +102,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart'])
     })
 
   .state('app.chef', {
-    url: '/chefs/:chefUsername',
+    url: '/chefs/:chefUsername/:chefId',
     views: {
       'menuContent': {
         templateUrl: 'templates/chef.html',

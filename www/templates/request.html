@@ -8,33 +8,33 @@
 
   <ion-content>
 
-    <div class="list card" ng-repeat="n in [1,2,3,4]">
+    <div class="list card" ng-repeat="dish in menu">
 
 	  <div class="item item-avatar">
-	    <img ng-src="{{imgpath}}/img/chef.jpg">
-	    <h2>Pollo Imaginario Especial</h2>
-	    <p><a href="#/app/chefs/po5i">Carlos Villavicencio</a></p>
+	    <img ng-src="{{dish.chef.user.profile.avatar}}">
+	    <h2>{{dish.name}}</h2>
+	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
 	  </div>
 
 	  <div class="item item-image">
-	    <img ng-src="{{imgpath}}/img/pollo.jpg">
+	    <img ng-src="{{dish.photo}}">
 	  </div>
 
 	  <div class="item item-text-wrap">
-	    Delicioso pollo rústico imaginario disponible exclusivamente en COZI.
+	    {{dish.description}}
 	  </div>
 
 	  <a class="item item-icon-left balanced">
 	    <i class="icon ion-ios-pricetags"></i>
-	    pollo, apio, tomate, mostaza
+	    {{dish.tags}}
 	  </a>
 	  <a class="item item-icon-left assertive">
 	    <i class="icon ion-social-usd"></i>
-	    5,000
+	    {{dish.price}}
 	  </a>
 	  <a class="item item-icon-left assertive">
 	    <i class="icon ion-fork"></i>
-	    <ngcart-addtocart id="item1" name="Pollo Imaginario Especial" price="5000" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>
+	    <ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>
 	  </a>
 
 	</div>
