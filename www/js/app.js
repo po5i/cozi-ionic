@@ -10,9 +10,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCart'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule',])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, localStorageService, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -25,11 +25,42 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    if(typeof window.OAuth !== 'undefined'){
+      //alert(window.OAuth.getVersion());
+      $rootScope.OAuth = window.OAuth;
+      $rootScope.OAuth.initialize('kH8PJiGff3uvzSvnxPfbyKotKEg');
+      var storage_backend = localStorageService.get('backend');
+      if(storage_backend)
+          authorizationResult = $rootScope.OAuth.create(storage_backend);
+    }
+    else{
+      //console.log("not mobile");
+      $.getScript( "lib/oauth.js", function() {
+        $rootScope.OAuth = OAuth;        
+        $rootScope.OAuth.initialize('kH8PJiGff3uvzSvnxPfbyKotKEg');
+        var storage_backend = localStorageService.get('backend');
+        if(storage_backend)
+            authorizationResult = $rootScope.OAuth.create(storage_backend);
+      });
+    }
+
+    
   });
+
+  /*
+  var currentUser = localStorageService.get('currentUser');
+  if(currentUser){
+    $rootScope.currentUser = currentUser;
+  }
+  */
 
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+  localStorageServiceProvider.prefix = 'cozi';
+
   $stateProvider
 
     .state('app', {

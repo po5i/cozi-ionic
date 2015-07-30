@@ -1,6 +1,8 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService) {
+
+  oauthService.initialize();
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -47,18 +49,54 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  //AUTH
+  /////////////////////
+
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+    //console.log('Doing login', $scope.loginData);
+    oauthService.authenticate($scope.loginData, function() {
+      if ($rootScope.authenticated) {
+          $scope.error = false;    
+          $scope.loginData = {};
+          
+          $scope.modal.hide();
+      } else {
+          $scope.error = true;
+          alert("Ha ocurrido un error al ingresar con su cuenta");
+      }
+    });
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
+    //$timeout(function() {
+    //  $scope.closeLogin();
+    //}, 1000);
   };
 
+  //when the user clicks the connect twitter button, the popup authorization window opens
+  $scope.connectButton = function(backend) {
+      oauthService.connectProvider(backend).then(function(data) {
+          if (oauthService.isReady()) {
+              //$scope.username = data.username;
+              //if the authorization is successful, hide the connect button and display the tweets
+              $scope.modal.hide();
+          }
+          else{
+              $scope.error = true;
+          }
+      });
+  };
 
+  //sign out clears the OAuth cache, the user will have to reauthenticate when returning
+  //deprecated
+  $scope.signOut = function() {
+      oauthService.clearCache();
+      delete $scope.user;
+  };
+
+  //MENU
+  /////////////////////
 
   $scope.filters = { };
 
@@ -97,6 +135,8 @@ angular.module('starter.controllers', [])
 
 
 .controller('ChefCtrl', function($scope, $stateParams, $http, $rootScope) {
+  //CHEFS
+  /////////////////////
   $scope.chef_username = $stateParams.chefUsername;
   $scope.chef_id = $stateParams.chefId;
   $scope.chef = {}
