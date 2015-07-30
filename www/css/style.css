@@ -1,1 +1,28 @@
 /* Empty. Add your own CSS if you like */
+
+
+.barra_cozi_izq {
+	background-color: #D66B22 !important;
+	height: 60px;
+	border-bottom: none;
+}
+
+.barra_cozi_izq h1 {
+	color: white !important;
+	line-height: 60px !important;
+	font-size: 20px !important;
+}
+
+.has-header {
+	top: 60px !important;
+}
+
+.cozi_barra_izq_fondo {
+	background-color: #D66B22;
+}
+
+.item-content {
+	background-color: #D66B22 !important;
+	color: white !important;
+	border: #FCA066 !important;
+}
