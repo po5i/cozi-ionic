@@ -1,49 +1,55 @@
 <ion-view view-title="Perfil">
   <ion-content>
     
+  <form name="profileForm" id="informacion_editable" ng-submit="profileForm.$valid && updateProfile()" novalidate>
+
     <div class="item item-divider">
     	<i class="icon ion-person"></i> Datos Personales
   	</div>
     <div class="list">
 	  <label class="item item-input">
 	    <span class="input-label">Username</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.username">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Password</span>
-	    <input type="password">
+	    <input type="password" ng-model="user.password">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Nombre</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.first_name">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Apellido</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.last_name">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Email</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.email">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Fecha de nacimiento</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.profile.birth_date">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Delegación</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.profile.delegacion">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Dirección</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.profile.address">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Teléfono</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.profile.phone">
 	  </label>
 	  <label class="item item-input">
 	    <span class="input-label">Ciudad</span>
-	    <input type="text">
+	    <input type="text" ng-model="user.profile.city">
+	  </label>
+	  <label class="item item-input">
+	    <span class="input-label">País</span>
+	    <input type="text" ng-model="user.profile.country">
 	  </label>
 	</div>
 
@@ -53,21 +59,23 @@
   	<div class="list">
 	  <label class="item item-input item-stacked-label">
 	    <span class="input-label">Cosas que no como</span>
-	    <input type="text" placeholder="Fréjol">
+	    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	    <span class="input-label">Consideraciones de salud</span>
-	    <input type="text" placeholder="Intolerante a la lactosa">
+	    <input type="text" placeholder="Intolerante a la lactosa" ng-model="user.profile.concern">
 	  </label>
 	  <label class="item item-input item-stacked-label">
 	    <span class="input-label">Alergias</span>
-	    <input type="text" placeholder="Maní">
+	    <input type="text" placeholder="Maní" ng-model="user.profile.allergies">
 	  </label>
 	</div>
 
 	<button class="button button-block button-positive">
 	  Guardar
   	</button>
+
+  </form>
 
   </ion-content>
 </ion-view>

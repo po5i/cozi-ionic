@@ -85,6 +85,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       'menuContent': {
         templateUrl: 'templates/request2.html'
       }
+    },
+    data: {
+      //requireLogin: true
     }
   })
 
@@ -103,14 +106,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
         'menuContent': {
           templateUrl: 'templates/history.html'
         }
+      },
+      data: {
+        requireLogin: true
       }
     })
   .state('app.profile', {
       url: '/profile',
       views: {
         'menuContent': {
-          templateUrl: 'templates/profile.html'
+          templateUrl: 'templates/profile.html',
+          controller: 'ProfileCtrl'
         }
+      },
+      data: {
+        requireLogin: true
       }
     })
   .state('app.rate', {
@@ -119,6 +129,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
         'menuContent': {
           templateUrl: 'templates/rate.html'
         }
+      },
+      data: {
+        requireLogin: true
       }
     })
 

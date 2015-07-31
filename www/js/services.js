@@ -13,6 +13,18 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
         isReady: function() {
             return (authorizationResult);
         },
+        getCurrentUser: function() {
+            var deferred = $q.defer();
+
+            var userPromise = $http.get($rootScope.api_url+'/api/users/' + $rootScope.auth_data.id + '/',{
+                headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+            });
+            userPromise.success(function(data, status, headers, config){
+                deferred.resolve(data);
+            });
+
+            return deferred.promise;
+        },
         authenticate: function(credentials, callback) {
             var backend = "auth";
             var deferred = $q.defer();
@@ -25,7 +37,6 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                     //console.log(data);
                     if (data.token) {
                         $rootScope.authenticated = true;
-                        $rootScope.currentUser = data;       
                         localStorageService.set('currentUser',data);
                         localStorageService.set('backend',backend);
                         deferred.resolve(data);
@@ -40,6 +51,8 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                 $rootScope.authenticated = false;
                 callback && callback();
             });
+
+            return deferred.promise;
         },
         connectProvider: function(backend) {
             var deferred = $q.defer();
@@ -52,10 +65,10 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                     var token;
 
                     //django
-                    if(backend=="facebook")
-                        token = "OAuthToken "+result.access_token;
                     if(backend=="twitter")
                         token = "OAuthToken "+result.oauth_token+" "+result.oauth_token_secret;
+                    else    //google or facebook
+                        token = "OAuthToken "+result.access_token;
 
                     /*console.log("consulting me...");
                     result.me().done(function(me) {
@@ -64,9 +77,15 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                       //todo when the OAuth flow failed
                     });*/
 
+                    var api_backend;
+                    if(backend=="google")
+                        api_backend = "google-oauth2";
+                    else
+                        api_backend = backend;
+
                     
                     $http.defaults.useXDomain = true;
-                    var loginPromise = $http.post($rootScope.api_url+'/api-token/login/' + backend + '/',"",{
+                    var loginPromise = $http.post($rootScope.api_url+'/api-token/login/' + api_backend + '/',"",{
                         headers: {'Authorization': token}
                     });
 
@@ -77,10 +96,9 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                         else{
                             //console.log(data);
                             deferred.resolve(data);
-                            $rootScope.auth_data = data;
 
-                            if(data.username){
-                                $rootScope.currentUser = data;
+                            if(data.id){
+                                $rootScope.auth_data = data;                                
                                 $rootScope.authenticated = true;
                                 localStorageService.set('currentUser',data);
                                 localStorageService.set('backend',backend);
@@ -124,8 +142,8 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
 
                     
                     $http.defaults.useXDomain = true;
-                    var loginPromise = $http.post($rootScope.api_url+'/api-token/connect/' + backend + '/',{authorization: token,user:$rootScope.currentUser.id},{
-                        headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+                    var loginPromise = $http.post($rootScope.api_url+'/api-token/connect/' + backend + '/',{authorization: token,user:$rootScope.auth_data.id},{
+                        headers: {'Authorization': "Token "+$rootScope.auth_data.token}
                     });
 
 
@@ -165,9 +183,9 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
         },*/
         clearCache: function() {
             $rootScope.authenticated = false;
-            if(typeof $rootScope.currentUser !== 'undefined'){
+            if(typeof $rootScope.auth_data !== 'undefined'){
                 var loginPromise = $http.get($rootScope.api_url+'/api-token/logout/',{                        
-                    headers: {'Authorization': "Token "+$rootScope.currentUser.token}
+                    headers: {'Authorization': "Token "+$rootScope.auth_data.token}
                 });
 
                 loginPromise.success(function(data, status, headers, config){
@@ -178,7 +196,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                         //OAuth.clearCache();
                         authorizationResult = false;
                         
-                        delete $rootScope.currentUser;
+                        delete $rootScope.auth_data;
                         delete $rootScope.authenticated;
                         localStorageService.clearAll();
                         

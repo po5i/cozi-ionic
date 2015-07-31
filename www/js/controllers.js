@@ -12,6 +12,7 @@ angular.module('starter.controllers', [])
   //});
 
   $rootScope.api_url = "http://162.243.230.228";
+  $scope.user = {};
 
   ngCart.setTaxRate(7.5);
   ngCart.setShipping(2.99);  
@@ -32,11 +33,58 @@ angular.module('starter.controllers', [])
   };
 
   $scope.checkout = function() {
-      $state.go('app.request2');
+    //check if authentication
+    if ((typeof $rootScope.auth_data === 'undefined')) {
+      //event.preventDefault();
+      // get me a login!
+      $scope.modal.show();
+    }
+    else{
+      //oauthService.getCurrentUser().then(function(data){
+      //  $scope.user = data;
+      //});  
+    }
+    $state.go('app.request2');
   }
 
+  $scope.rq = {}
   $scope.doCheckout = function() {
-    console.log(ngCart.getItems());
+    //guardar el request, por cada plato
+    var items = ngCart.getItems();
+    var total = ngCart.totalCost();
+    for (var i in items) {
+      var req = {};
+
+      req.user = $rootScope.auth_data.id;
+      req.dish = items[i].getId();
+      req.type = $scope.rq.type;
+      req.servings = items[i].getQuantity();
+      req.date = $scope.rq.date;
+      req.address = $scope.user.profile.address;
+      req.phone = $scope.user.profile.phone;
+      req.dont_eat = $scope.user.profile.dont_eat;
+      req.concerns = $scope.user.profile.concerns;
+      req.allergies = $scope.user.profile.allergies;
+      req.price = items[i].getPrice();
+      req.status = "solicitado";
+
+      console.log(req);
+      console.log(items[i].getTotal());
+
+      var newPromise = $http.post($rootScope.api_url+'/api/requests/',req,{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+
+      newPromise.success(function(data, status, headers, config){
+          alert("Solicitud enviada");
+      });
+
+      newPromise.error(function(data, status, headers, config){
+          alert("Ha ocurrido un error "+status);
+      });
+    }
+
+    //TODO: vaciar el carrito
   }
 
   // Triggered in the login modal to close it
@@ -49,17 +97,34 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  // detectar requireLogin
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    if(("data" in toState)){
+      var requireLogin = toState.data.requireLogin;
+
+      if (requireLogin && (typeof $rootScope.auth_data === 'undefined')) {
+        event.preventDefault();
+        // get me a login!
+        $scope.modal.show();
+      }
+    }
+  });
+
   //AUTH
   /////////////////////
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    //console.log('Doing login', $scope.loginData);
-    oauthService.authenticate($scope.loginData, function(data) {
+    oauthService.authenticate($scope.loginData).then(function(data) {
       if ($rootScope.authenticated) {
           $scope.error = false;    
           $scope.loginData = {};
           
+          //get the user information
+          oauthService.getCurrentUser().then(function(data2){
+            $scope.user = data2;
+          });  
+
           $scope.modal.hide();
       } else {
           $scope.error = true;
@@ -80,12 +145,16 @@ angular.module('starter.controllers', [])
           if (oauthService.isReady()) {
               //$scope.username = data.username;
               //if the authorization is successful, hide the connect button and display the tweets
-              
-              $scope.modal.hide();
           }
           else{
-              $scope.error = true;
+              //$scope.error = true;
           }
+
+          //get the user information
+          oauthService.getCurrentUser().then(function(data){
+            $scope.user = data;
+          });  
+          $scope.modal.hide();
       });
   };
 
@@ -113,7 +182,7 @@ angular.module('starter.controllers', [])
 
   
 
-
+  
   
 
 })
@@ -131,6 +200,41 @@ angular.module('starter.controllers', [])
     { title: 'Cowbell', id: 6 }
   ];
 })
+
+
+
+
+.controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService) {
+    //PROFILE
+    ////////////////////
+    $scope.user = {};
+
+    if(typeof $rootScope.auth_data !== 'undefined'){
+        //get the user information
+        oauthService.getCurrentUser().then(function(data){
+          $scope.user = data;
+        });
+    }
+    else{
+      console.log("Inicie sesión");
+      $state.go('app.request');
+    }
+
+    $scope.updateProfile = function(){
+        var userPromise = $http.put($rootScope.api_url+'/api/users/' + $rootScope.auth_data.id + '/',$scope.user,{
+            headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+        });
+
+        userPromise.success(function(data, status, headers, config){
+            alert('Cambios guardados');
+        });
+
+        userPromise.error(function(data, status, headers, config){
+            alert("Ha ocurrido un error "+status);
+        });
+    };
+})
+
 
 
 
