@@ -9,13 +9,7 @@
 
 	  <div class="item item-avatar">
 	    <h2>{{chef.user.first_name}} {{chef.user.last_name}}</h2>
-	    <div>
-		    <i class="icon ion-android-star"></i>
-		    <i class="icon ion-android-star"></i>
-		    <i class="icon ion-android-star"></i>
-		    <i class="icon ion-android-star"></i>
-	    	<i class="icon ion-android-star-outline"></i>
-	    </div>
+	    <p><rating ng-model="chef.rating" max="5" readonly="readonly"></rating></p>
 	  </div>
 
 	  <div class="item item-text-wrap">

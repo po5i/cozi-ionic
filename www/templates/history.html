@@ -2,12 +2,12 @@
   <ion-content>
     
   	<div class="list">
-	    <a class="item item-thumbnail-left" href="#" ng-repeat="n in [1,2,3,4]">
-	      <img ng-src="{{imgpath}}/img/pollo.jpg">
-	      <h2>Pollo Imaginario Especial</h2>
-	      <p>Carlos Villavicencio</p>
-	      <p>Hace 5 días</p>
-	      <button class="button button-small button-balanced" ng-click="doReview()">
+	    <a class="item item-thumbnail-left" href="#" ng-repeat="request in history">
+	      <img ng-src="{{request.dish.photo}}">
+	      <h2>{{request.dish.name}}</h2>
+	      <p>{{request.dish.chef.user.first_name}} {{request.dish.chef.user.last_name}}</p>
+	      <p>{{request.date}}</p>
+	      <button ng-show="!request.reviewed" class="button button-small button-balanced" ng-click="review({{request.id}},{{request.dish.chef.id}},{{request.dish.id}})">
 		    <i class="icon ion-android-star"></i> Calificar
 		  </button>
 	    </a>

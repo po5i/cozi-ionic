@@ -28,9 +28,77 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
-  $scope.doReview = function () {
+  //RATE
+  /////////////////////
+
+  
+  $scope.review = function (request_id,chef_id,dish_id) {
+      $scope.review_new = {};
+      $scope.review_new.dish_rate = 3;
+      $scope.review_new.chef_rate = 3;
+      $scope.review_new.max = 5;
+
+      $scope.review_new.request_id = request_id;
+      $scope.review_new.chef_id = chef_id;
+      $scope.review_new.dish_id = dish_id;
       $state.go('app.rate');
   };
+
+  $scope.doReview = function () {
+      //save reviews
+      if(typeof $scope.review_new.chef_review !== 'undefined'){
+        var newPromise = $http.post($rootScope.api_url+'/api/chefendorsements/',{
+                                                                              chef: $scope.review_new.chef_id,
+                                                                              user: $rootScope.auth_data.id,
+                                                                              endorsement: $scope.review_new.chef_review
+        },{
+            headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+        });
+        newPromise.success(function(data, status, headers, config){      });
+        newPromise.error(function(data, status, headers, config){      });
+      }
+        
+      var newPromise = $http.post($rootScope.api_url+'/api/chefratings/',{
+                                                                            chef: $scope.review_new.chef_id,
+                                                                            user: $rootScope.auth_data.id,
+                                                                            rating: $scope.review_new.chef_rate
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){      });
+      newPromise.error(function(data, status, headers, config){      });
+
+      var newPromise = $http.post($rootScope.api_url+'/api/dishratings/',{
+                                                                            dish: $scope.review_new.dish_id,
+                                                                            user: $rootScope.auth_data.id,
+                                                                            rating: $scope.review_new.dish_rate,
+                                                                            review: $scope.review_new.dish_review
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){      });
+      newPromise.error(function(data, status, headers, config){      });
+
+      var newPromise = $http.patch($rootScope.api_url+'/api/requests/'+$scope.review_new.request_id + '/',{
+                                                                          id: $scope.review_new.request_id,
+                                                                          reviewed: true
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){      });
+      newPromise.error(function(data, status, headers, config){      });
+
+      console.log("Calificación guardada");
+      $state.go('app.request');
+  }
+
+  /*$scope.$watch('review_new.dish_rate', function() {
+    console.log('New value: '+$scope.review_new.dish_rate);
+  });  */
+
+
+  //CHECKOUT
+  /////////////////////
 
   $scope.checkout = function() {
     //check if authentication
@@ -38,11 +106,6 @@ angular.module('starter.controllers', [])
       //event.preventDefault();
       // get me a login!
       $scope.modal.show();
-    }
-    else{
-      //oauthService.getCurrentUser().then(function(data){
-      //  $scope.user = data;
-      //});  
     }
     $state.go('app.request2');
   }
@@ -87,6 +150,11 @@ angular.module('starter.controllers', [])
     //TODO: vaciar el carrito
   }
 
+
+
+  //AUTH
+  /////////////////////
+
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -110,8 +178,7 @@ angular.module('starter.controllers', [])
     }
   });
 
-  //AUTH
-  /////////////////////
+  
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
@@ -235,6 +302,25 @@ angular.module('starter.controllers', [])
     };
 })
 
+
+
+
+.controller('HistoryCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService) {
+    //PROFILE
+    ////////////////////
+    $scope.history = {};
+
+    if(typeof $rootScope.auth_data !== 'undefined'){
+        //get the user information
+        oauthService.getUserHistory().then(function(data){
+          $scope.history = data;
+        });
+    }
+    else{
+      console.log("Inicie sesión");
+      $state.go('app.request');
+    }
+})
 
 
 

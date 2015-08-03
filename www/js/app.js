@@ -10,7 +10,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule',])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule','ionic.rating'])
 
 .run(function($ionicPlatform, localStorageService, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -49,9 +49,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
   });
 
   /*
+  // persistent session
   var currentUser = localStorageService.get('currentUser');
   if(currentUser){
-    $rootScope.currentUser = currentUser;
+    $rootScope.api_auth = currentUser;
   }
   */
 
@@ -104,7 +105,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       url: '/history',
       views: {
         'menuContent': {
-          templateUrl: 'templates/history.html'
+          templateUrl: 'templates/history.html',
+          controller: 'HistoryCtrl'
         }
       },
       data: {

@@ -25,6 +25,18 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
 
             return deferred.promise;
         },
+        getUserHistory: function() {
+            var deferred = $q.defer();
+
+            var userPromise = $http.get($rootScope.api_url+'/api/history/?user_id=' + $rootScope.auth_data.id,{
+                headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+            });
+            userPromise.success(function(data, status, headers, config){
+                deferred.resolve(data);
+            });
+
+            return deferred.promise;
+        },
         authenticate: function(credentials, callback) {
             var backend = "auth";
             var deferred = $q.defer();

@@ -1,36 +1,34 @@
 <ion-view view-title="Calificar">
   <ion-content>
+  	<form name="reviewForm" id="" ng-submit="reviewForm.$valid && doReview()" novalidate>
+	    <div class="list">
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Recomendación</span>
+		    <textarea placeholder="Cómo le pareció el plato?" ng-model="review_new.dish_review"></textarea>
+		  </label>
 
-    <div class="list">
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Review</span>
-	    <textarea placeholder="Como le fue en su experiencia?"></textarea>
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Calificación al menú</span>
-	    <div>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-	    	<i class="icon ion-android-star-outline"></i>
-	    </div>
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Calificación al chef</span>
-	    <div>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-		    <i class="icon ion-android-star-outline"></i>
-	    	<i class="icon ion-android-star-outline"></i>
-	    </div>
-	  </label>
-	</div>
+		  <div class="item item-input item-stacked-label">
+		    <span class="input-label">Calificación al plato</span>
+		    <div>
+			    <rating ng-model="review_new.dish_rate" max="review_new.max"></rating>
+		    </div>
+		  </div>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Testimonio</span>
+		    <textarea placeholder="Testimonio para el chef?" ng-model="review_new.chef_review"></textarea>
+		  </label>
+		  <div class="item item-input item-stacked-label">
+		    <span class="input-label">Calificación al chef</span>
+		    <div>
+			    <rating ng-model="review_new.chef_rate" max="review_new.max"></rating>
+		    </div>
+		  </div>
+		</div>
 
-	<button class="button button-block button-balanced">
-	  Guardar
-  	</button>
+		<button class="button button-block button-balanced">
+		  Guardar
+	  	</button>
+	</form>
 
   </ion-content>
 </ion-view>
