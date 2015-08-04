@@ -11,7 +11,7 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $rootScope.api_url = "http://162.243.230.228";
+  $rootScope.api_url = "http://api.cozifood.com";
   $scope.user = {};
 
   ngCart.setTaxRate(7.5);
