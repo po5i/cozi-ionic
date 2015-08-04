@@ -4,7 +4,7 @@
 .barra_cozi_izq {
 	background-color: #D66B22 !important;
 	height: 60px;
-	border-bottom: none;
+	border-bottom: 1px solid #FCA066 !important;
 }
 
 .barra_cozi_izq h1 {
@@ -19,13 +19,24 @@
 
 .cozi_barra_izq_fondo {
 	background-color: #D66B22;
+	padding: 0px 5% !important;
 }
 
-.item-content {
+.menu-bt-izq {
 	background-color: #D66B22 !important;
-	color: white !important;
-	border: #FCA066 !important;
+	border: none;
+	color: white;
+	border-bottom: 1px solid #FCA066 !important;
+	margin: 0 !important;
+	padding-left: 5px !important;
 }
+
+.menu-bt-izq a {
+	background-color: #D66B22 !important;
+	border: none;
+	padding: 16px 16px 16px 10px !important;
+}
+
 
 ul.rating li {
   display: inline;
