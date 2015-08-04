@@ -45,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       });
     }
 
-    
+    $rootScope.authenticated = false;
   });
 
   /*

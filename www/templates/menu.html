@@ -18,7 +18,7 @@
     </ion-header-bar>
     <ion-content class="cozi_barra_izq_fondo">
       <ion-list>
-        <ion-item menu-close ng-click="login()">
+        <ion-item menu-close ng-click="login()" ng-hide="user">
           Iniciar sesión
         </ion-item>
         <ion-item menu-close href="#/app/request">
@@ -32,6 +32,9 @@
         </ion-item>
         <ion-item menu-close href="#/app/profile">
           Perfil
+        </ion-item>
+        <ion-item menu-close ng-click="logout()" ng-show="user">
+          Salir
         </ion-item>
       </ion-list>
     </ion-content>
