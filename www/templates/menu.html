@@ -18,7 +18,8 @@
     </ion-header-bar>
     <ion-content class="cozi_barra_izq_fondo">
       <ion-list>
-        <ion-item menu-close ng-click="login()" class="menu-bt-izq">
+
+        <ion-item menu-close ng-click="login()" class="menu-bt-izq" ng-hide="user">
           Iniciar sesión
         </ion-item>
 
@@ -27,6 +28,11 @@
         <ion-item menu-close href="#/app/subscribe" class="menu-bt-izq">Suscripción</ion-item>
         <ion-item menu-close href="#/app/history" class="menu-bt-izq">Historial</ion-item>
         <ion-item menu-close href="#/app/profile" class="menu-bt-izq">Perfil</ion-item>
+
+        <ion-item menu-close ng-click="logout()" ng-show="user">
+          Salir
+        </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>

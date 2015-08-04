@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService, $ionicHistory) {
 
   oauthService.initialize();
 
@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
   //});
 
   $rootScope.api_url = "http://api.cozifood.com";
-  $scope.user = {};
+  $scope.user = null;
 
   ngCart.setTaxRate(7.5);
   ngCart.setShipping(2.99);  
@@ -102,7 +102,8 @@ angular.module('starter.controllers', [])
 
   $scope.checkout = function() {
     //check if authentication
-    if ((typeof $rootScope.auth_data === 'undefined')) {
+    //if ((typeof $rootScope.auth_data === 'undefined')) {
+    if (!$rootScope.authenticated) {
       //event.preventDefault();
       // get me a login!
       $scope.modal.show();
@@ -165,6 +166,13 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  $scope.logout = function() {
+    oauthService.clearCache();
+    delete $scope.user;
+    $ionicHistory.clearHistory();
+    $state.go("app.request");
+  };
+
   // detectar requireLogin
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if(("data" in toState)){
@@ -225,12 +233,6 @@ angular.module('starter.controllers', [])
       });
   };
 
-  //sign out clears the OAuth cache, the user will have to reauthenticate when returning
-  //deprecated
-  $scope.signOut = function() {
-      oauthService.clearCache();
-      delete $scope.user;
-  };
 
   //MENU
   /////////////////////
@@ -274,9 +276,10 @@ angular.module('starter.controllers', [])
 .controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService) {
     //PROFILE
     ////////////////////
-    $scope.user = {};
+    $scope.user = null;
 
-    if(typeof $rootScope.auth_data !== 'undefined'){
+    //if(typeof $rootScope.auth_data !== 'undefined'){
+    if ($rootScope.authenticated) {
         //get the user information
         oauthService.getCurrentUser().then(function(data){
           $scope.user = data;
@@ -310,7 +313,8 @@ angular.module('starter.controllers', [])
     ////////////////////
     $scope.history = {};
 
-    if(typeof $rootScope.auth_data !== 'undefined'){
+    //if(typeof $rootScope.auth_data !== 'undefined'){
+    if ($rootScope.authenticated) {
         //get the user information
         oauthService.getUserHistory().then(function(data){
           $scope.history = data;
