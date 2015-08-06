@@ -1,10 +1,84 @@
 /* Empty. Add your own CSS if you like */
 
+* {
+	font-family: 'Open Sans' !important;
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-Light-300.ttf);  
+    font-weight: 300; 
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-LightItalic-300.ttf);  
+    font-weight: 300;
+    font-style: italic; 
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-Regular-normal.ttf);  
+    font-weight: normal;  
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url(../fonts/OpenSans-Italic-normal.ttf);
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-Semibold-600.ttf);  
+    font-weight: 600;  
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-SemiboldItalic-600.ttf);  
+    font-weight: 600;
+    font-style: italic;  
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-Bold.ttf);  
+    font-weight: bold;
+    font-style: italic;  
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-BoldItalic.ttf);  
+    font-weight: bold;
+    font-style: italic;  
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-ExtraBold-800.ttf);  
+    font-weight: 800;
+    font-style: italic;  
+}
+
+@font-face {
+    font-family: 'Open Sans';  
+    src: url(../fonts/OpenSans-ExtraBoldItalic-800.ttf);  
+    font-weight: 800;
+    font-style: italic;  
+}
+
+
+
+
 
 .barra_cozi_izq {
 	background-color: #D66B22 !important;
 	height: 60px;
-	border-bottom: none;
+	border-bottom: 1px solid #FCA066 !important;
 }
 
 .barra_cozi_izq h1 {
@@ -19,12 +93,28 @@
 
 .cozi_barra_izq_fondo {
 	background-color: #D66B22;
+	padding: 0px 5% !important;
 }
 
-.item-content {
+
+.item-icon-left.menu-cozi {
 	background-color: #D66B22 !important;
-	color: white !important;
-	border: #FCA066 !important;
+	border: none ! important;
+	color: white;
+	border-bottom: 1px solid #FCA066 !important;
+	margin: 0 !important;
+	padding-left: 5px !important;
+	font-size: 1em !important;
+	font-weight: 300;
+
+}
+
+.item-icon-left.menu-cozi .item-content {
+	background-color: #D66B22 !important;
+	border: none ! important;
+	color: white;
+	margin: 0 !important;
+
 }
 
 ul.rating li {

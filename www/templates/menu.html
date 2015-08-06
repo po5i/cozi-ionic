@@ -18,24 +18,29 @@
     </ion-header-bar>
     <ion-content class="cozi_barra_izq_fondo">
       <ion-list>
-        <ion-item menu-close ng-click="login()" ng-hide="user">
+
+        <ion-item menu-close href="#/app/request" class="item-icon-left menu-cozi">
+          <i class="icon ion-ios-bookmarks"></i>Ver Menú</ion-item>
+
+        <ion-item menu-close href="#/app/subscribe" class="item-icon-left menu-cozi">
+          <i class="icon ion-ios-bookmarks"></i>Suscripción</ion-item>
+
+        <ion-item menu-close href="#/app/history" class="item-icon-left menu-cozi">
+          <i class="icon ion-ios-bookmarks"></i>Historial</ion-item>
+
+        <ion-item menu-close href="#/app/profile" class="item-icon-left menu-cozi">
+          <i class="icon ion-ios-bookmarks"></i>Perfil</ion-item>
+
+
+
+        <ion-item menu-close ng-click="login()" class="menu-bt-izq" ng-hide="user">
           Iniciar sesión
         </ion-item>
-        <ion-item menu-close href="#/app/request">
-          Ver Menú
-        </ion-item>
-        <ion-item menu-close href="#/app/subscribe">
-          Suscripción
-        </ion-item>
-        <ion-item menu-close href="#/app/history">
-          Historial
-        </ion-item>
-        <ion-item menu-close href="#/app/profile">
-          Perfil
-        </ion-item>
-        <ion-item menu-close ng-click="logout()" ng-show="user">
+
+        <ion-item menu-close ng-click="logout()" ng-show="user" class="item-icon-left">
           Salir
         </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-side-menu>
