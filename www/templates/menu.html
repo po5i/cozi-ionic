@@ -14,34 +14,38 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable barra_cozi_izq">
-      <h1 class="title">COZI</h1>
+      <div class="title"><img src="img/logo-cozi.svg"></div>
     </ion-header-bar>
     <ion-content class="cozi_barra_izq_fondo">
+
       <ion-list>
 
         <ion-item menu-close href="#/app/request" class="item-icon-left menu-cozi">
           <i class="icon ion-ios-bookmarks"></i>Ver Menú</ion-item>
 
         <ion-item menu-close href="#/app/subscribe" class="item-icon-left menu-cozi">
-          <i class="icon ion-ios-bookmarks"></i>Suscripción</ion-item>
+          <i class="icon ion-social-rss"></i>Suscripción</ion-item>
 
         <ion-item menu-close href="#/app/history" class="item-icon-left menu-cozi">
-          <i class="icon ion-ios-bookmarks"></i>Historial</ion-item>
+          <i class="icon ion-android-time"></i>Historial</ion-item>
 
         <ion-item menu-close href="#/app/profile" class="item-icon-left menu-cozi">
-          <i class="icon ion-ios-bookmarks"></i>Perfil</ion-item>
-
-
-
-        <ion-item menu-close ng-click="login()" class="menu-bt-izq" ng-hide="user">
-          Iniciar sesión
-        </ion-item>
-
-        <ion-item menu-close ng-click="logout()" ng-show="user" class="item-icon-left">
-          Salir
-        </ion-item>
+          <i class="icon ion-android-person"></i>Perfil</ion-item>
 
       </ion-list>
     </ion-content>
+
+    <div class="bt-iniciar-salir">
+          <button menu-close ng-click="login()" class="item-icon-left" ng-hide="user">
+            Iniciar sesión
+          </button>
+  
+          <button menu-close ng-click="logout()" ng-show="user" class="item-icon-left">
+            <i class="icon ion-close"></i>Salir
+          </button>
+
+    </div>
+
+
   </ion-side-menu>
 </ion-side-menus>

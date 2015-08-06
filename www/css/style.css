@@ -78,13 +78,20 @@
 .barra_cozi_izq {
 	background-color: #D66B22 !important;
 	height: 60px;
-	border-bottom: 1px solid #FCA066 !important;
+	border-bottom: 1px solid #EF7622 !important;
 }
 
-.barra_cozi_izq h1 {
-	color: white !important;
-	line-height: 60px !important;
-	font-size: 20px !important;
+.bar .title {
+	height: 60px !important;
+	text-align: center !important;
+}
+
+.title img {
+	width: auto;
+	height: 60px !important;
+	display: inline-block;
+	text-align: center !important;
+	z-index: 200;
 }
 
 .has-header {
@@ -100,23 +107,63 @@
 .item-icon-left.menu-cozi {
 	background-color: #D66B22 !important;
 	border: none ! important;
-	color: white;
-	border-bottom: 1px solid #FCA066 !important;
+	color: #ffba90;
+	border-bottom: 1px solid #EF7622 !important;
 	margin: 0 !important;
 	padding-left: 5px !important;
-	font-size: 1em !important;
+	font-size: 16px !important;
 	font-weight: 300;
+}
 
+.item-icon-left.menu-cozi:active {
+	color: white;
 }
 
 .item-icon-left.menu-cozi .item-content {
 	background-color: #D66B22 !important;
 	border: none ! important;
-	color: white;
 	margin: 0 !important;
 
 }
 
+.item-icon-left.menu-cozi i {
+	font-size: 26px !important;
+	color: white;
+
+}
+
+.bt-iniciar-salir {
+	width: 165px;
+	height: auto;
+	bottom: 15px;
+	left: 55px;
+	position: absolute !important;
+	z-index: 100;
+}
+
+.bt-iniciar-salir .item-icon-left {
+	width: 100%;
+	background-color: #ef7622;
+	border: none;
+	border-radius: 40px;
+	padding: 10px 20px !important;
+	color: white;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.bt-iniciar-salir .item-icon-left i {
+	font-size: 20px;
+}
+
+.bt-iniciar-salir .item-icon-left:active {
+	background-color: rgba(239,118,34,0.6);
+}
+
+/******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
+/******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
+/******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 ul.rating li {
   display: inline;
   border: 0px;
@@ -126,3 +173,4 @@ ul.rating li {
 ul.rating li i {
   font-size: 20px;
 }
+/******* FINAL DE TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
