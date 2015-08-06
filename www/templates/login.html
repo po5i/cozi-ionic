@@ -6,7 +6,7 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form name="loginForm" ng-submit="loginForm.$valid && doLogin()">
+    <form  ng-hide="registerToogle" name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Usuario</span>
@@ -22,12 +22,42 @@
       </div>
     </form>
 
-    <div class="list">
+    <form ng-show="registerToogle" name="registerForm" role="form" ng-submit="registerForm.$valid && register()" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Usuario</span>
+          <input type="text" ng-model="registerData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Contraseña</span>
+          <input type="password" ng-model="registerData.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="registerData.first_name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Apellido</span>
+          <input type="text" ng-model="registerData.last_name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="text" ng-model="registerData.email">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Registrarse</button>
+        </label>
+      </div>
+    </form>
+
+    <div class="list" ng-hide="registerToogle">
       <div class="item">
         <button ng-click="connectButton('facebook')" class="button button-block button-positive"><i class="icon ion-social-facebook"></i> Facebook</button>
         <button ng-click="connectButton('google')" class="button button-block button-assertive"><i class="icon ion-social-googleplus"></i> Google</button>
+        <button class="button button-block button-balanced" type="button" ng-click="showRegister()">Registrarse</button>
       </div>
     </div>
+
 
   </ion-content>
 </ion-modal-view>

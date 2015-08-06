@@ -19,6 +19,7 @@ angular.module('starter.controllers', [])
 
   // Form data for the login modal
   $scope.loginData = {};
+  $scope.registerToogle = false;
   $scope.imgpath = window.location.href.replace(window.location.hash,""); //temp,debug
 
   // Create the login modal that we will use later
@@ -190,16 +191,19 @@ angular.module('starter.controllers', [])
 
   // Perform the login action when the user submits the login form
   $scope.doLogin = function() {
-    oauthService.authenticate($scope.loginData).then(function(data) {
-      if ($rootScope.authenticated) {
+    promiseB = oauthService.authenticate($scope.loginData).then(function(data) {
+      
+    });
+
+    promiseB.then(function(data){
+        if ($rootScope.authenticated) {
           $scope.error = false;    
           $scope.loginData = {};
           
           //get the user information
           oauthService.getCurrentUser().then(function(data2){
             $scope.user = data2;
-          });  
-
+          });
           $scope.modal.hide();
       } else {
           $scope.error = true;
@@ -216,21 +220,41 @@ angular.module('starter.controllers', [])
 
   //when the user clicks the connect twitter button, the popup authorization window opens
   $scope.connectButton = function(backend) {
-      oauthService.connectProvider(backend).then(function(data) {
-          if (oauthService.isReady()) {
-              //$scope.username = data.username;
-              //if the authorization is successful, hide the connect button and display the tweets
-          }
-          else{
-              //$scope.error = true;
-          }
+      promiseB = oauthService.connectProvider(backend).then(function(data) {
+      });
 
-          //get the user information
+      promiseB.then(function(data){
           oauthService.getCurrentUser().then(function(data){
             $scope.user = data;
           });  
           $scope.modal.hide();
       });
+  };
+
+  $scope.showRegister = function() {
+      $scope.registerToogle = true;
+  };
+
+  $scope.registerData = {};
+  $scope.register = function() {
+      //send it to the api:
+      var newPromise = $http.post($rootScope.api_url+'/api/users/',$scope.registerData);
+
+      newPromise.success(function(data, status, headers, config){
+          alert('Nuevo usuario registrado, por favor ingrese con sus credenciales');
+          $scope.registerData = {};
+      });
+
+      newPromise.error(function(data, status, headers, config){
+          if(status==400){
+              alert("No es posible registrarse, probablemente el usuario ya existe.");
+          }
+          else{
+              alert("Ha ocurrido un error "+status);
+          }
+      });
+
+      $scope.registerToogle = false;
   };
 
 
