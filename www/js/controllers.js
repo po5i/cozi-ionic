@@ -103,13 +103,15 @@ angular.module('starter.controllers', [])
 
   $scope.checkout = function() {
     //check if authentication
-    //if ((typeof $rootScope.auth_data === 'undefined')) {
-    if (!$rootScope.authenticated) {
+    /*if (!$rootScope.authenticated) {
       //event.preventDefault();
       // get me a login!
       $scope.modal.show();
     }
-    $state.go('app.request2');
+    else{
+      $state.go('app.request2');  
+    }*/
+    $state.go('app.request2');  
   }
 
   $scope.rq = {}
@@ -174,13 +176,16 @@ angular.module('starter.controllers', [])
     $state.go("app.request");
   };
 
+
   // detectar requireLogin
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if(("data" in toState)){
+      console.log(toState);
       var requireLogin = toState.data.requireLogin;
 
       if (requireLogin && (typeof $rootScope.auth_data === 'undefined')) {
         event.preventDefault();
+        $rootScope.redirect = toState.name;
         // get me a login!
         $scope.modal.show();
       }
@@ -205,6 +210,11 @@ angular.module('starter.controllers', [])
             $scope.user = data2;
           });
           $scope.modal.hide();
+          if($rootScope.redirect != null){
+            $state.go($rootScope.redirect);  
+            $rootScope.redirect = null;
+          }
+          
       } else {
           $scope.error = true;
           alert("Ha ocurrido un error al ingresar con su cuenta");
@@ -228,6 +238,10 @@ angular.module('starter.controllers', [])
             $scope.user = data;
           });  
           $scope.modal.hide();
+          if($rootScope.redirect != null){
+            $state.go($rootScope.redirect);  
+            $rootScope.redirect = null;
+          }
       });
   };
 

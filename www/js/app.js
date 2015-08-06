@@ -46,6 +46,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
     }
 
     $rootScope.authenticated = false;
+    $rootScope.redirect = null;
   });
 
   /*
@@ -88,7 +89,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       }
     },
     data: {
-      //requireLogin: true
+      requireLogin: true
     }
   })
 
