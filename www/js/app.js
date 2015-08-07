@@ -23,7 +23,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      //StatusBar.styleDefault();
+      StatusBar.statusBarOverlaysWebView = false;
+      StatusBar.backgroundColorByHexString("#D66B22");
     }
 
     if(typeof window.OAuth !== 'undefined'){
