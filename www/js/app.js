@@ -12,7 +12,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule','ionic.rating'])
 
-.run(function($ionicPlatform, localStorageService, $rootScope) {
+.run(function($ionicPlatform, localStorageService, $rootScope, $ionicLoading) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -49,6 +49,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
     $rootScope.redirect = null;
   });
 
+  //loading
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0
+    });
+  });
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide();
+  });
+
   /*
   // persistent session
   var currentUser = localStorageService.get('currentUser');
@@ -59,8 +74,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
 })
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider, $httpProvider) {
 
+  // loading
+
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show');
+        return config;
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide');
+        return response;
+      }
+    }
+  });
+
+  // routing
+  
   localStorageServiceProvider.prefix = 'cozi';
 
   $stateProvider
