@@ -151,7 +151,10 @@ angular.module('starter.controllers', [])
       });
     }
 
-    //TODO: vaciar el carrito
+    //vaciar el carrito
+    for (var i in items) {
+      ngCart.removeItem(i);
+    }
   }
 
 
@@ -168,6 +171,10 @@ angular.module('starter.controllers', [])
   $scope.login = function() {
     $scope.modal.show();
   };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 
   $scope.logout = function() {
     oauthService.clearCache();
@@ -400,12 +407,19 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope) {
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal) {
   //CHEFS
   /////////////////////
   $scope.chef_id = $rootScope.chef_id;
   $scope.chef = {};
   $scope.pending = {};
+  $scope.dish = {};
+
+  $ionicModal.fromTemplateUrl('templates/dish_form.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
 
   var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
       //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
@@ -427,6 +441,16 @@ angular.module('starter.controllers', [])
       console.log("Error");
   });
 
+  var dishesPromise = $http.get($rootScope.api_url+'/api/dishes/?chef_id=' + $scope.chef_id,{
+      headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  dishesPromise.success(function(data, status, headers, config){
+      $scope.dishes = data;
+  });
+  dishesPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
   $scope.changeRequestStatus = function(request_id,request_status,model_index) {
       var newPromise = $http.patch($rootScope.api_url+'/api/requests/'+ request_id + '/',{
                                                                           id: request_id,
@@ -441,5 +465,27 @@ angular.module('starter.controllers', [])
       });
       newPromise.error(function(data, status, headers, config){      });
   };
+
+  $scope.edit = function(dish,index) {
+    $scope.dish = dish;
+    $scope.modal.show()
+  }
+
+  $scope.new = function() {
+    $scope.modal.show()
+  }
+
+  $scope.save = function() {
+    //TODO: $scope.dishes[index] = $scope.dish
+    $scope.modal.hide();
+  };
+
+  $scope.close = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 
 });
