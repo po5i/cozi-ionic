@@ -20,6 +20,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                 headers: {'Authorization': "Token "+$rootScope.auth_data.token}
             });
             userPromise.success(function(data, status, headers, config){
+                $rootScope.chef_id = data.profile.get_chef_id;
                 deferred.resolve(data);
             });
 

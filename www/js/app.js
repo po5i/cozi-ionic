@@ -160,6 +160,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
         requireLogin: true
       }
     })
+
+  .state('app.pending', {
+      url: '/pending',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/pending.html',
+          controller: 'ChefAdminCtrl'
+        }
+      },
+      data: {
+        requireLogin: true
+      }
+    })
+
+  .state('app.dishmanager', {
+      url: '/dishmanager',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/dishmanager.html',
+          controller: 'ChefAdminCtrl'
+        }
+      },
+      data: {
+        requireLogin: true
+      }
+    })
+
   .state('app.rate', {
       url: '/rate',
       views: {

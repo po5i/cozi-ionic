@@ -180,7 +180,7 @@ angular.module('starter.controllers', [])
   // detectar requireLogin
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if(("data" in toState)){
-      console.log(toState);
+      //console.log(toState);
       var requireLogin = toState.data.requireLogin;
 
       if (requireLogin && (typeof $rootScope.auth_data === 'undefined')) {
@@ -372,8 +372,8 @@ angular.module('starter.controllers', [])
   /////////////////////
   $scope.chef_username = $stateParams.chefUsername;
   $scope.chef_id = $stateParams.chefId;
-  $scope.chef = {}
-  $scope.endorsements = {}
+  $scope.chef = {};
+  $scope.endorsements = {};
 
   var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
       //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
@@ -394,4 +394,52 @@ angular.module('starter.controllers', [])
   endorsementsPromise.error(function(data, status, headers, config){
       console.log("Error");
   });
+})
+
+
+
+
+
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope) {
+  //CHEFS
+  /////////////////////
+  $scope.chef_id = $rootScope.chef_id;
+  $scope.chef = {};
+  $scope.pending = {};
+
+  var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
+      //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  chefPromise.success(function(data, status, headers, config){
+      $scope.chef = data;
+  });
+  chefPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  var pendingPromise = $http.get($rootScope.api_url+'/api/history/?chef_id=' + $scope.chef_id,{
+      headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  pendingPromise.success(function(data, status, headers, config){
+      $scope.pending = data;
+  });
+  pendingPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  $scope.changeRequestStatus = function(request_id,request_status,model_index) {
+      var newPromise = $http.patch($rootScope.api_url+'/api/requests/'+ request_id + '/',{
+                                                                          id: request_id,
+                                                                          status: request_status
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){
+        $scope.pending[model_index].status = request_status;
+        alert("Estado cambiado");
+        //cambiar el model
+      });
+      newPromise.error(function(data, status, headers, config){      });
+  };
+
 });
