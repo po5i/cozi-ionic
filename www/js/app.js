@@ -100,60 +100,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
   $stateProvider
 
     .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
 
-  .state('app.request', {
-    url: '/request',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/request.html'
-      }
-    }
-  })
-
-  .state('app.request2', {
-    url: '/request2',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/request2.html'
-      }
-    },
-    data: {
-      requireLogin: true
-    }
-  })
-
-  .state('app.subscribe', {
-      url: '/subscribe',
+    .state('app.request', {
+      url: '/request',
+      cache: false, 
       views: {
         'menuContent': {
-          templateUrl: 'templates/subscribe.html'
+          templateUrl: 'templates/request.html'
         }
       }
     })
 
-  .state('app.history', {
-      url: '/history',
+    .state('app.request2', {
+      url: '/request2',
       views: {
         'menuContent': {
-          templateUrl: 'templates/history.html',
-          controller: 'HistoryCtrl'
-        }
-      },
-      data: {
-        requireLogin: true
-      }
-    })
-  .state('app.profile', {
-      url: '/profile',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/profile.html',
-          controller: 'ProfileCtrl'
+          templateUrl: 'templates/request2.html'
         }
       },
       data: {
@@ -161,63 +128,98 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       }
     })
 
-  .state('app.pending', {
-      url: '/pending',
+    .state('app.subscribe', {
+        url: '/subscribe',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/subscribe.html'
+          }
+        }
+      })
+
+    .state('app.history', {
+        url: '/history',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/history.html',
+            controller: 'HistoryCtrl'
+          }
+        },
+        data: {
+          requireLogin: true
+        }
+      })
+    .state('app.profile', {
+        url: '/profile',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/profile.html',
+            controller: 'ProfileCtrl'
+          }
+        },
+        data: {
+          requireLogin: true
+        }
+      })
+
+    .state('app.pending', {
+        url: '/pending',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/pending.html',
+            controller: 'ChefAdminCtrl'
+          }
+        },
+        data: {
+          requireLogin: true
+        }
+      })
+
+    .state('app.dishmanager', {
+        url: '/dishmanager',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/dishmanager.html',
+            controller: 'ChefAdminCtrl'
+          }
+        },
+        data: {
+          requireLogin: true
+        }
+      })
+
+    .state('app.rate', {
+        url: '/rate',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/rate.html'
+          }
+        },
+        data: {
+          requireLogin: true
+        }
+      })
+
+    .state('app.chefs', {
+        url: '/chefs',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/chefs.html',
+            controller: 'PlaylistsCtrl'
+          }
+        }
+      })
+
+    .state('app.chef', {
+      url: '/chefs/:chefUsername/:chefId',
       views: {
         'menuContent': {
-          templateUrl: 'templates/pending.html',
-          controller: 'ChefAdminCtrl'
-        }
-      },
-      data: {
-        requireLogin: true
-      }
-    })
-
-  .state('app.dishmanager', {
-      url: '/dishmanager',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/dishmanager.html',
-          controller: 'ChefAdminCtrl'
-        }
-      },
-      data: {
-        requireLogin: true
-      }
-    })
-
-  .state('app.rate', {
-      url: '/rate',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/rate.html'
-        }
-      },
-      data: {
-        requireLogin: true
-      }
-    })
-
-  .state('app.chefs', {
-      url: '/chefs',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/chefs.html',
-          controller: 'PlaylistsCtrl'
+          templateUrl: 'templates/chef.html',
+          controller: 'ChefCtrl'
         }
       }
-    })
-
-  .state('app.chef', {
-    url: '/chefs/:chefUsername/:chefId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/chef.html',
-        controller: 'ChefCtrl'
-      }
-    }
-  });
+    });
+  
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/request');
 });

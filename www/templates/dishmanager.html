@@ -11,7 +11,7 @@
   	<div class="list">
 	    <a class="item item-thumbnail-left" href="#" ng-repeat="dish in dishes">
 	      <img ng-src="{{dish.photo}}">
-	      <h2>{{dish.name}}</h2>
+	      <h2>{{dish.name}} <i class="icon ion-eye" ng-show="dish.published"></i><i class="icon ion-eye-disabled" ng-hide="dish.published"></i></h2>
 	      <p>{{dish.tags}}</p>
 	      <p>$ {{dish.price}}</p>
 	      <button class="button button-small button-stable" ng-click="edit({{dish}},$index)">

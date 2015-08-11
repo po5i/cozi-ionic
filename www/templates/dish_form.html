@@ -7,7 +7,7 @@
   </ion-header-bar>
   <ion-content>
 
-    <form name="dishForm" role="form" ng-submit="dishForm.$valid && save()" novalidate>
+    <form name="dishForm" role="form" ng-submit="dishForm.$valid && save()" enctype="multipart/form-data" novalidate>
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Nombre</span>
@@ -29,6 +29,16 @@
           <span class="input-label">Nueva Foto</span>
           <input type="file" id="photo" name="photo[]"/>
         </label>
+        <label class="item item-toggle">
+          Publicado
+          <label class="toggle toggle-energized">
+             <input type="checkbox" ng-model="dish.published">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+          </label>
+        </label>
+
         <label class="item">
           <button class="button button-block button-positive" type="submit">Guardar</button>
         </label>
