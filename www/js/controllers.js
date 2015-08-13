@@ -103,13 +103,15 @@ angular.module('starter.controllers', [])
 
   $scope.checkout = function() {
     //check if authentication
-    //if ((typeof $rootScope.auth_data === 'undefined')) {
-    if (!$rootScope.authenticated) {
+    /*if (!$rootScope.authenticated) {
       //event.preventDefault();
       // get me a login!
       $scope.modal.show();
     }
-    $state.go('app.request2');
+    else{
+      $state.go('app.request2');  
+    }*/
+    $state.go('app.request2');  
   }
 
   $scope.rq = {}
@@ -149,7 +151,10 @@ angular.module('starter.controllers', [])
       });
     }
 
-    //TODO: vaciar el carrito
+    //vaciar el carrito
+    for (var i in items) {
+      ngCart.removeItem(i);
+    }
   }
 
 
@@ -167,6 +172,10 @@ angular.module('starter.controllers', [])
     $scope.modal.show();
   };
 
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
   $scope.logout = function() {
     oauthService.clearCache();
     delete $scope.user;
@@ -174,13 +183,16 @@ angular.module('starter.controllers', [])
     $state.go("app.request");
   };
 
+
   // detectar requireLogin
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
     if(("data" in toState)){
+      //console.log(toState);
       var requireLogin = toState.data.requireLogin;
 
       if (requireLogin && (typeof $rootScope.auth_data === 'undefined')) {
         event.preventDefault();
+        $rootScope.redirect = toState.name;
         // get me a login!
         $scope.modal.show();
       }
@@ -205,6 +217,11 @@ angular.module('starter.controllers', [])
             $scope.user = data2;
           });
           $scope.modal.hide();
+          if($rootScope.redirect != null){
+            $state.go($rootScope.redirect);  
+            $rootScope.redirect = null;
+          }
+          
       } else {
           $scope.error = true;
           alert("Ha ocurrido un error al ingresar con su cuenta");
@@ -228,6 +245,10 @@ angular.module('starter.controllers', [])
             $scope.user = data;
           });  
           $scope.modal.hide();
+          if($rootScope.redirect != null){
+            $state.go($rootScope.redirect);  
+            $rootScope.redirect = null;
+          }
       });
   };
 
@@ -358,8 +379,8 @@ angular.module('starter.controllers', [])
   /////////////////////
   $scope.chef_username = $stateParams.chefUsername;
   $scope.chef_id = $stateParams.chefId;
-  $scope.chef = {}
-  $scope.endorsements = {}
+  $scope.chef = {};
+  $scope.endorsements = {};
 
   var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
       //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
@@ -380,4 +401,132 @@ angular.module('starter.controllers', [])
   endorsementsPromise.error(function(data, status, headers, config){
       console.log("Error");
   });
+})
+
+
+
+
+
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal) {
+  //CHEFS
+  /////////////////////
+  $scope.chef_id = $rootScope.chef_id;
+  $scope.chef = {};
+  $scope.pending = {};
+  $scope.dish = {};
+  $scope.dish_form_mode = null;
+
+  $ionicModal.fromTemplateUrl('templates/dish_form.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  var chefPromise = $http.get($rootScope.api_url+'/api/chefs/'+$scope.chef_id,{
+      //headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  chefPromise.success(function(data, status, headers, config){
+      $scope.chef = data;
+  });
+  chefPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  var pendingPromise = $http.get($rootScope.api_url+'/api/history/?chef_id=' + $scope.chef_id,{
+      headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  pendingPromise.success(function(data, status, headers, config){
+      $scope.pending = data;
+  });
+  pendingPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  var dishesPromise = $http.get($rootScope.api_url+'/api/dishadmin/?chef_id=' + $scope.chef_id,{
+      headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+  });
+  dishesPromise.success(function(data, status, headers, config){
+      $scope.dishes = data;
+  });
+  dishesPromise.error(function(data, status, headers, config){
+      console.log("Error");
+  });
+
+  $scope.changeRequestStatus = function(request_id,request_status,model_index) {
+      var newPromise = $http.patch($rootScope.api_url+'/api/requests/'+ request_id + '/',{
+                                                                          id: request_id,
+                                                                          status: request_status
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){
+        $scope.pending[model_index].status = request_status;
+        alert("Estado cambiado");
+        //cambiar el model
+      });
+      newPromise.error(function(data, status, headers, config){      });
+  };
+
+  $scope.edit = function(dish,index) {
+    console.log(index);
+    $scope.dish_form_mode = index;
+    $scope.dish = dish;
+    $scope.modal.show()
+  }
+
+  $scope.new = function() {
+    $scope.dish_form_mode = 'new';
+    $scope.dish = {};
+    $scope.modal.show()
+  }
+
+  $scope.save = function() {
+    if($scope.dish_form_mode == 'new'){
+      var newPromise = $http.post($rootScope.api_url+'/api/dishadmin/',{
+                                                                            chef: $scope.chef_id,
+                                                                            name: $scope.dish.name,
+                                                                            tags: $scope.dish.tags,
+                                                                            description: $scope.dish.description,
+                                                                            price: $scope.dish.price,
+                                                                            published: $scope.dish.published,
+                                                                            //photo: ???,
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){
+        $scope.dishes.push($scope.dish);
+        $scope.dish = null;     
+      });
+      newPromise.error(function(data, status, headers, config){      });
+    }
+    else if($scope.dish_form_mode >= 0){
+      var newPromise = $http.patch($rootScope.api_url+'/api/dishadmin/' + $scope.dish.id + '/',{
+                                                                            //chef: $scope.chef_id,
+                                                                            name: $scope.dish.name,
+                                                                            tags: $scope.dish.tags,
+                                                                            description: $scope.dish.description,
+                                                                            price: $scope.dish.price,
+                                                                            published: $scope.dish.published,
+                                                                            //photo: ???,
+      },{
+          headers: {'Authorization': "Token "+$rootScope.auth_data.token}
+      });
+      newPromise.success(function(data, status, headers, config){
+        $scope.dishes[$scope.dish_form_mode] = $scope.dish;
+        $scope.dish = null;
+      });
+      newPromise.error(function(data, status, headers, config){      });
+      
+    }
+    $scope.modal.hide();
+  };
+
+  $scope.close = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
 });

@@ -1,0 +1,31 @@
+<ion-view view-title="Pendientes">
+  <ion-content>
+  	
+  	<div class="card" ng-repeat="request in pending" ng-show="request.status!='realizado'">
+  	  <div class="item item-divider">
+	    {{request.dish.name}}
+	  </div>
+	  <div class="item item-text-wrap">
+	    <a class="item item-thumbnail-left">
+	      <img ng-src="{{request.dish.photo}}">
+	      <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
+	      <p><strong>Estado:</strong> {{request.status}}</p>
+	      <p><strong>Cuándo:</strong> {{request.date}}</p>
+	      <p><strong>Tipo:</strong> {{request.type}}</p>
+	      <p><strong>Porciones:</strong> {{request.servings}}</p>
+	      <p><strong>Direccion:</strong> {{request.address}}</p>
+	      <p><strong>Telefono:</strong> {{request.phone}}</p>
+	      <p><strong>No come:</strong> {{request.dont_eat}}</p>
+	      <p><strong>Indicaciones:</strong> {{request.concerns}}</p>
+	      <p><strong>Alergias:</strong> {{request.allergies}}</p>
+	    </a>
+	  </div>
+	  <div class="item item-divider">
+	      <button ng-show="request.status!='calificado'" class="button button-small button-balanced" ng-click="changeRequestStatus({{request.id}},'aceptado',$index)"><i class="icon ion-thumbsup"></i> Aceptar </button>
+	      <button ng-show="request.status!='calificado'" class="button button-small button-assertive" ng-click="changeRequestStatus({{request.id}},'rechazado',$index)"><i class="icon ion-thumbsdown"></i> Rechazar </button>
+	      <button ng-show="request.status!='calificado'" class="button button-small button-positive" ng-click="changeRequestStatus({{request.id}},'realizado',$index)"><i class="icon ion-checkmark-round"></i> Ya realizado </button>
+	  </div>
+	</div>
+
+  </ion-content>
+</ion-view>

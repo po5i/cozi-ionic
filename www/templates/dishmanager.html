@@ -1,0 +1,24 @@
+<ion-view view-title="Administrador">
+
+	<ion-nav-buttons side="secondary">
+      <button class="button button-clear" ng-click="new()">
+        <i class="icon ion-plus"></i>
+      </button>
+    </ion-nav-buttons>
+
+  <ion-content>
+
+  	<div class="list">
+	    <a class="item item-thumbnail-left" href="#" ng-repeat="dish in dishes">
+	      <img ng-src="{{dish.photo}}">
+	      <h2>{{dish.name}} <i class="icon ion-eye" ng-show="dish.published"></i><i class="icon ion-eye-disabled" ng-hide="dish.published"></i></h2>
+	      <p>{{dish.tags}}</p>
+	      <p>$ {{dish.price}}</p>
+	      <button class="button button-small button-stable" ng-click="edit({{dish}},$index)">
+		    <i class="icon ion-edit"></i> Editar
+		  </button>
+	    </a>
+	</div>
+
+  </ion-content>
+</ion-view>

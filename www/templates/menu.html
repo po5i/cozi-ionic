@@ -32,6 +32,15 @@
         <ion-item menu-close href="#/app/profile" class="item-icon-left menu-cozi">
           <i class="icon ion-android-person"></i>Perfil</ion-item>
 
+        <!-- solo para chefs -->
+        <ion-item menu-close href="#/app/pending" class="item-icon-left menu-cozi" ng-show="user.profile.get_chef_id">
+          <i class="icon ion-android-contacts"></i>Mis Pedidos</ion-item>
+
+        <ion-item menu-close href="#/app/dishmanager" class="item-icon-left menu-cozi" ng-show="user.profile.get_chef_id">
+          <i class="icon ion-android-restaurant"></i>Mis Platos</ion-item>
+
+        
+
       </ion-list>
     </ion-content>
 

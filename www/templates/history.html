@@ -7,6 +7,7 @@
 	      <h2>{{request.dish.name}}</h2>
 	      <p>{{request.dish.chef.user.first_name}} {{request.dish.chef.user.last_name}}</p>
 	      <p>{{request.date}}</p>
+	      <p><strong>Estado:</strong> {{request.status}}</p>
 	      <button ng-show="!request.reviewed" class="button button-small button-balanced" ng-click="review({{request.id}},{{request.dish.chef.id}},{{request.dish.id}})">
 		    <i class="icon ion-android-star"></i> Calificar
 		  </button>

@@ -1,0 +1,50 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Datos del plato</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="close()">Cerrar</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <form name="dishForm" role="form" ng-submit="dishForm.$valid && save()" enctype="multipart/form-data" novalidate>
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="dish.name">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Tags</span>
+          <input type="text" ng-model="dish.tags">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Descripción</span>
+          <input type="text" ng-model="dish.description">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Precio</span>
+          <input type="text" ng-model="dish.price">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Nueva Foto</span>
+          <input type="file" id="photo" name="photo[]"/>
+        </label>
+        <label class="item item-toggle">
+          Publicado
+          <label class="toggle toggle-energized">
+             <input type="checkbox" ng-model="dish.published">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+          </label>
+        </label>
+
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Guardar</button>
+        </label>
+      </div>
+    </form>
+
+
+  </ion-content>
+</ion-modal-view>
