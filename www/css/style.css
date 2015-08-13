@@ -110,7 +110,6 @@
 	color: #ffba90;
 	border-bottom: 1px solid #EF7622 !important;
 	margin: 0 !important;
-	padding-left: 5px !important;
 	font-size: 16px !important;
 	font-weight: 300;
 }
@@ -123,12 +122,14 @@
 	background-color: #D66B22 !important;
 	border: none ! important;
 	margin: 0 !important;
+	padding-left: 60px !important;
 
 }
 
 .item-icon-left.menu-cozi i {
 	font-size: 26px !important;
 	color: white;
+	left: 6px;
 
 }
 
