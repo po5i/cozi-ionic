@@ -108,6 +108,7 @@
 
 .has-header {
 	top: 60px !important;
+	background-color: #D66B22;
 }
 
 .cozi_barra_izq_fondo {
@@ -181,6 +182,43 @@
 	background-color:#D66B22 !important;
 }
 
+/******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
+/******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
+/******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
+
+.burb-carrito {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    color: #2bbc69;
+    line-height: 18px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 50%;
+    margin-left: -12px;
+    z-index: 50;
+}
+
+.bar .title {
+	line-height: 60px !important;
+}
+
+.bar-stable .button.button-clear {
+	color: #D66B22 !important;
+	max-height: 61px !important;
+}
+
+.bar.bar-stable {
+	border-color: none;
+}
+
+.carta-menus {
+	margin: 7px 7px 15px 7px !important;
+	box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.3);
+	border-radius: none !important;
+}
+
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
@@ -193,4 +231,7 @@ ul.rating li {
 ul.rating li i {
   font-size: 20px;
 }
+
+
+
 /******* FINAL DE TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/

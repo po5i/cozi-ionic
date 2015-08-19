@@ -3,23 +3,19 @@
       <button class="button button-clear" ng-click="checkout()">
         <i class="icon ion-android-cart"></i>
       </button>
-      <ngcart-summary></ngcart-summary>
+      <ngcart-summary class="burb-carrito"></ngcart-summary>
     </ion-nav-buttons>
 
   <ion-content>
 
-    <div class="list card" ng-repeat="dish in menu">
+    <div class="list card carta-menus" ng-repeat="dish in menu">
 
-	  <div class="item item-avatar">
-	    <img ng-src="{{dish.chef.user.profile.avatar}}">
-	    <h2>{{dish.name}}</h2>
-	    <p><rating ng-model="dish.rating" max="5" readonly="true"></rating></p>
-	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
-	  </div>
 
 	  <div class="item item-image">
 	    <img ng-src="{{dish.photo}}">
 	  </div>
+
+
 
 	  <!-- TABS -->
 	  <div class="item">
@@ -31,6 +27,13 @@
 	  </div>
 	  <div class="item" ng-show="dish.show_flag=='chef'">
 	  	Contenido de chef
+	  	<div class="item item-avatar">
+	    <img ng-src="{{dish.chef.user.profile.avatar}}">
+	    <h2>{{dish.name}}</h2>
+	    <p><rating ng-model="dish.rating" max="5" readonly="true"></rating></p>
+	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
+	  	</div>
+	  	
 	  </div>
 
 	  
