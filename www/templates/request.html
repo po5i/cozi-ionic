@@ -21,14 +21,28 @@
 	    <img ng-src="{{dish.photo}}">
 	  </div>
 
+	  <!-- TABS -->
+	  <div class="item">
+	    <a ng-click="showDescription($index)">Descripcion</a>
+	    <a ng-click="showChef($index)">Chef</a>
+	  </div>
+	  <div class="item" ng-show="dish.show_flag!='chef'">
+	  	Contenido de descripcion
+	  </div>
+	  <div class="item" ng-show="dish.show_flag=='chef'">
+	  	Contenido de chef
+	  </div>
+
+	  
+
 	  <div class="item item-text-wrap">
 	    {{dish.description}}
 	  </div>
-
 	  <a class="item item-icon-left item-text-wrap balanced">
 	    <i class="icon ion-ios-pricetags"></i>
 	    {{dish.tags}}
 	  </a>
+
 	  <a class="item item-icon-left assertive">
 	    <i class="icon ion-social-usd"></i>
 	    {{dish.price}}

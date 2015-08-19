@@ -241,14 +241,14 @@ angular.module('starter.controllers', [])
       });
 
       promiseB.then(function(data){
-          oauthService.getCurrentUser().then(function(data){
-            $scope.user = data;
-          });  
-          $scope.modal.hide();
-          if($rootScope.redirect != null){
-            $state.go($rootScope.redirect);  
-            $rootScope.redirect = null;
-          }
+        oauthService.getCurrentUser().then(function(data){
+          $scope.user = data;
+        });  
+        $scope.modal.hide();
+        if($rootScope.redirect != null){
+          $state.go($rootScope.redirect);  
+          $rootScope.redirect = null;
+        }
       });
   };
 
@@ -296,7 +296,14 @@ angular.module('starter.controllers', [])
 
   
 
-  
+
+  $scope.showDescription = function(index){
+    $scope.menu[index].show_flag = 'description'
+  };
+
+  $scope.showChef = function(index){
+    $scope.menu[index].show_flag = 'chef'
+  };
   
 
 })
@@ -481,6 +488,9 @@ angular.module('starter.controllers', [])
   }
 
   $scope.save = function() {
+    //TODO: revisar
+    //http://forum.ionicframework.com/t/how-to-make-uploading-files-or-images-using-ionicframwork-or-angularjs/391/18
+    //https://github.com/leon/angular-upload  
     if($scope.dish_form_mode == 'new'){
       var newPromise = $http.post($rootScope.api_url+'/api/dishadmin/',{
                                                                             chef: $scope.chef_id,
