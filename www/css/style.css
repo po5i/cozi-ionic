@@ -283,7 +283,7 @@
 }
 
 .tab-solo1, .tab-solo2 {
-	width: 50%;
+	width: 50% !important;
 	height: auto;
 	font-size: 15px;
 	font-weight: 300;
@@ -295,9 +295,6 @@
 	margin: 0px;
 }
 
-.tab-solo2 {
-	margin-left: -4px;	 
-}
 
 .tab-activo {
 	border-bottom: 4px solid #ef7521 !important;
