@@ -318,3 +318,11 @@ ul.rating li i {
 
 
 /******* FINAL DE TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
