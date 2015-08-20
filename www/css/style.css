@@ -195,12 +195,19 @@
     text-align: center;
     font-size: 11px;
     font-weight: 800;
-    margin-left: -12px;
+    /*margin-left: -12px;*/
     z-index: 50;
     -webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
+	position: absolute;
+    top: 2px;
+    right: -2px;
 }
+
+ .bar .title + .buttons {
+ 	right: 8px !important;
+ }
 
 .bar .title {
 	line-height: 60px !important;
@@ -261,7 +268,7 @@
 	color: white;
 	padding: 10px 15px !important;
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: normal;
 	text-transform: uppercase;
 	text-align: left;
 }
@@ -303,6 +310,46 @@
 	border-bottom: 4px solid #ef7521 !important;
 	color: #ef7521;
 }
+
+.item.item-descripcion {
+	padding: 5px 12px !important;
+}
+
+.descripcion-tx {
+	color: #666;
+	font-size: 0.9em;
+	font-weight: 300;
+	padding: 10px 2px;
+}
+
+.chef-tx {
+	color: #2bbc69 !important;
+	font-size: 0.85em;
+	font-weight: 300;
+	font-style: italic;
+	padding: 12px 2px 10px 36px !important;
+	border: none;
+	border-top: 1px dotted #ddd;
+}
+
+.chef-tx i.icon.ion-ios-pricetags {
+	left: 0px;
+}
+
+.dv-estrellas {
+	width: 49.3%;
+	height: auto;
+	border-right: 1px solid #ddd;
+}
+
+.estrellas-agregar {
+	padding: 15px 10px !important;
+}
+
+.estrellas {
+	color: #ef7521;
+}
+
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
@@ -310,7 +357,7 @@ ul.rating li {
   display: inline;
   border: 0px;
   background: none;
-  padding: 5px 10px;
+  padding: 5px 4px;
 }
 ul.rating li i {
   font-size: 20px;

@@ -1,5 +1,5 @@
 <ion-view view-title="Menú">
-	<ion-nav-buttons side="secondary">
+	<ion-nav-buttons side="secondary" class="carr-and-burb">
       <button class="button button-clear" ng-click="checkout()">
         <i class="icon ion-android-cart"></i>
       </button>
@@ -33,15 +33,14 @@
 
 	  <!--****DESCRIPCION***DESCRIPCION****-->
 	  <!--****DESCRIPCION***DESCRIPCION****-->
-	  <div class="item" ng-show="dish.show_flag!='chef'">
-	  	<div class="item item-text-wrap">
-	    {{dish.description}}
+	  <div class="item item-descripcion" ng-show="dish.show_flag!='chef'">
+	  	<div class="item item-text-wrap descripcion-tx">
+	    	{{dish.description}}
 	  	</div>
-
-	  	<a class="item item-icon-left item-text-wrap balanced">
-	    <i class="icon ion-ios-pricetags"></i>
-	    {{dish.tags}}
-	  </a>
+		
+		<a class="item item-icon-left item-text-wrap balanced chef-tx">
+	    	<i class="icon ion-ios-pricetags"></i>{{dish.tags}}
+	    </a>
 
 	  </div>
 
@@ -51,17 +50,19 @@
 	  	<div class="item item-avatar">
 	    <img ng-src="{{dish.chef.user.profile.avatar}}">
 	    
-	    <p><rating ng-model="dish.rating" max="5" readonly="true"></rating></p>
+	    
 	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
 	  	</div>
 	  	
 	  </div>
 
-	  
-	  <a class="item item-icon-left assertive">
-	    <i class="icon ion-fork"></i>
-	    <ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>
-	  </a>
+	 
+	  <div class="item estrellas-agregar">
+	   
+	  <div class="dv-estrellas">
+	   	<rating ng-model="dish.rating" max="5" readonly="true" class="estrellas"></rating>
+	    <!--<ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>-->
+	  </div>
 
 	</div>
   </ion-content>
