@@ -11,25 +11,44 @@
     <div class="list card carta-menus" ng-repeat="dish in menu">
 
 
-	  <div class="item item-image">
+	  <div class="item item-image fondo-imagen">
 	    <img ng-src="{{dish.photo}}">
+	    <div  class="opacity"></div>
+	    <div class="nombre-precio">
+	    	<h2>{{dish.name}}</h2>
+	    	<a class="item item-icon-left assertive">${{dish.price}}</a>
+	  	</div>
 	  </div>
 
+
+
+		
 
 
 	  <!-- TABS -->
-	  <div class="item">
-	    <a ng-click="showDescription($index)">Descripcion</a>
-	    <a ng-click="showChef($index)">Chef</a>
+	  <div class="item tabs-carta">
+	    <div class="tab-solo1 tab-activo" ng-click="showDescription($index)"><a>Descripcion</a></div>
+	    <div class="tab-solo2" ng-click="showChef($index)"><a>Chef</a></div>
 	  </div>
-	  <div class="item" ng-show="dish.show_flag!='chef'">
-	  	Contenido de descripcion
+
+	  <div class="item" ng-show="dish.show_flag!='chef'"><!--****DESCRIPCION***DESCRIPCION****-->
+	  	<strong>Contenido de descripcion</strong>
+	  	<div class="item item-text-wrap">
+	    {{dish.description}}
+	  	</div>
+
+	  	<a class="item item-icon-left item-text-wrap balanced">
+	    <i class="icon ion-ios-pricetags"></i>
+	    {{dish.tags}}
+	  </a>
+
 	  </div>
-	  <div class="item" ng-show="dish.show_flag=='chef'">
-	  	Contenido de chef
+
+	  <div class="item" ng-show="dish.show_flag=='chef'"><!--****CHEF***CHEF***CHEF***CHEF****-->
+	  	<strong>Contenido de chef</strong>
 	  	<div class="item item-avatar">
 	    <img ng-src="{{dish.chef.user.profile.avatar}}">
-	    <h2>{{dish.name}}</h2>
+	    
 	    <p><rating ng-model="dish.rating" max="5" readonly="true"></rating></p>
 	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
 	  	</div>
@@ -37,19 +56,6 @@
 	  </div>
 
 	  
-
-	  <div class="item item-text-wrap">
-	    {{dish.description}}
-	  </div>
-	  <a class="item item-icon-left item-text-wrap balanced">
-	    <i class="icon ion-ios-pricetags"></i>
-	    {{dish.tags}}
-	  </a>
-
-	  <a class="item item-icon-left assertive">
-	    <i class="icon ion-social-usd"></i>
-	    {{dish.price}}
-	  </a>
 	  <a class="item item-icon-left assertive">
 	    <i class="icon ion-fork"></i>
 	    <ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="10">Agregar al carrito</ngcart-addtocart>

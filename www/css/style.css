@@ -214,11 +214,94 @@
 }
 
 .carta-menus {
+	background-color: transparent !important;
 	margin: 7px 7px 15px 7px !important;
 	box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.3);
 	border-radius: none !important;
 }
 
+
+
+.fondo.imagen img {
+	position: relative;
+	background-size: cover;
+	z-index: 200;
+}
+
+.opacity {
+
+	width: 100%;
+	height: 100%;
+	z-index: 300;
+	position: absolute;
+	top: 0;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+60,0+100,0.45+100 */
+	background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.45) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(60%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.45))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.45) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.45) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.45) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%,rgba(0,0,0,0.45) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#73000000',GradientType=0 ); /* IE6-9 */
+}
+
+.nombre-precio {
+	width: 100%;
+	height: auto;
+	z-index: 500;
+	bottom: 0;
+	position: absolute;
+	color: white;
+}
+
+.nombre-precio h2 {
+	width: 70%;
+	color: white;
+	padding: 10px 15px !important;
+	font-size: 16px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.nombre-precio a {
+	background-color: transparent;
+    color: white;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 10px 15px !important;
+}
+
+
+.tabs-carta {
+	color: white;
+	border: none !important;
+	padding: 0px !important;
+}
+
+.tab-solo1, .tab-solo2 {
+	width: 50%;
+	height: auto;
+	font-size: 15px;
+	font-weight: 300;
+	color: gray;
+	line-height: 50px;
+	display: inline-block;
+	text-align: center;
+	border-bottom: 4px solid transparent !important;
+	margin: 0px;
+}
+
+.tab-solo2 {
+	margin-left: -4px;	 
+}
+
+.tab-activo {
+	border-bottom: 4px solid #ef7521 !important;
+}
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
