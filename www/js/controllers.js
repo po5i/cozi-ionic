@@ -414,7 +414,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal) {
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal, Upload, $timeout) {
   //CHEFS
   /////////////////////
   $scope.chef_id = $rootScope.chef_id;
@@ -487,45 +487,100 @@ angular.module('starter.controllers', [])
     $scope.modal.show()
   }
 
-  $scope.save = function() {
+  $scope.save = function(file) {
     //TODO: revisar
     //http://forum.ionicframework.com/t/how-to-make-uploading-files-or-images-using-ionicframwork-or-angularjs/391/18
     //https://github.com/leon/angular-upload  
+
+    
+
+
     if($scope.dish_form_mode == 'new'){
-      var newPromise = $http.post($rootScope.api_url+'/api/dishadmin/',{
-                                                                            chef: $scope.chef_id,
-                                                                            name: $scope.dish.name,
-                                                                            tags: $scope.dish.tags,
-                                                                            description: $scope.dish.description,
-                                                                            price: $scope.dish.price,
-                                                                            published: $scope.dish.published,
-                                                                            //photo: ???,
-      },{
+      var obj = {
+                  chef: $scope.chef_id,
+                  name: $scope.dish.name,
+                  tags: $scope.dish.tags,
+                  description: $scope.dish.description,
+                  price: $scope.dish.price,
+                  published: $scope.dish.published,
+      }
+      /*var newPromise = $http.post($rootScope.api_url+'/api/dishadmin/',obj,{
           headers: {'Authorization': "Token "+$rootScope.auth_data.token}
       });
       newPromise.success(function(data, status, headers, config){
         $scope.dishes.push($scope.dish);
         $scope.dish = null;     
       });
-      newPromise.error(function(data, status, headers, config){      });
+      newPromise.error(function(data, status, headers, config){      });*/
+
+      //https://github.com/danialfarid/ng-file-upload
+      file.upload = Upload.upload({
+        url: $rootScope.api_url+'/api/dishadmin/',
+        method: 'POST',
+        headers: {'Authorization': "Token "+$rootScope.auth_data.token},
+        fields: obj,
+        file: file,
+        fileFormDataName: 'myFile'
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          //file.result = response.data;
+          $scope.dishes.push(response.data);
+          $scope.dish = null;     
+        });
+      }, function (response) {
+        //if (response.status > 0)
+          //$scope.errorMsg = response.status + ': ' + response.data;
+      });
+
+      file.upload.progress(function (evt) {
+        // Math.min is to fix IE which reports 200% sometimes
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
     }
     else if($scope.dish_form_mode >= 0){
-      var newPromise = $http.patch($rootScope.api_url+'/api/dishadmin/' + $scope.dish.id + '/',{
-                                                                            //chef: $scope.chef_id,
-                                                                            name: $scope.dish.name,
-                                                                            tags: $scope.dish.tags,
-                                                                            description: $scope.dish.description,
-                                                                            price: $scope.dish.price,
-                                                                            published: $scope.dish.published,
-                                                                            //photo: ???,
-      },{
+      var obj = {
+                  name: $scope.dish.name,
+                  tags: $scope.dish.tags,
+                  description: $scope.dish.description,
+                  price: $scope.dish.price,
+                  published: $scope.dish.published,
+      }
+      /*var newPromise = $http.patch($rootScope.api_url+'/api/dishadmin/' + $scope.dish.id + '/',obj,{
           headers: {'Authorization': "Token "+$rootScope.auth_data.token}
       });
       newPromise.success(function(data, status, headers, config){
         $scope.dishes[$scope.dish_form_mode] = $scope.dish;
         $scope.dish = null;
       });
-      newPromise.error(function(data, status, headers, config){      });
+      newPromise.error(function(data, status, headers, config){      });*/
+
+      //https://github.com/danialfarid/ng-file-upload
+      file.upload = Upload.upload({
+        url: $rootScope.api_url+'/api/dishadmin/' + $scope.dish.id + '/',
+        method: 'PATCH',
+        headers: {'Authorization': "Token "+$rootScope.auth_data.token},
+        fields: obj,
+        file: file,
+        fileFormDataName: 'myFile'
+      });
+
+      file.upload.then(function (response) {
+        $timeout(function () {
+          //file.result = response.data;
+          $scope.dishes[$scope.dish_form_mode] = $scope.dish;
+          $scope.dish = null;     
+        });
+      }, function (response) {
+        //if (response.status > 0)
+          //$scope.errorMsg = response.status + ': ' + response.data;
+      });
+
+      file.upload.progress(function (evt) {
+        // Math.min is to fix IE which reports 200% sometimes
+        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+      });
       
     }
     $scope.modal.hide();

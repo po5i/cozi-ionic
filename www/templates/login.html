@@ -10,11 +10,11 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Usuario</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="loginData.username" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="loginData.password" required>
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Iniciar sesión</button>
@@ -26,23 +26,23 @@
       <div class="list">
         <label class="item item-input">
           <span class="input-label">Usuario</span>
-          <input type="text" ng-model="registerData.username">
+          <input type="text" ng-model="registerData.username" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="registerData.password">
+          <input type="password" ng-model="registerData.password" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Nombre</span>
-          <input type="text" ng-model="registerData.first_name">
+          <input type="text" ng-model="registerData.first_name" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Apellido</span>
-          <input type="text" ng-model="registerData.last_name">
+          <input type="text" ng-model="registerData.last_name" required>
         </label>
         <label class="item item-input">
           <span class="input-label">Email</span>
-          <input type="text" ng-model="registerData.email">
+          <input type="text" ng-model="registerData.email" required>
         </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Registrarse</button>

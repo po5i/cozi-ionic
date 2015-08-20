@@ -27,8 +27,8 @@
 
 	  <!-- TABS -->
 	  <div class="item tabs-carta">
-	    <div class="tab-solo1 tab-activo" ng-click="showDescription($index)"><a>Descripcion</a></div>
-	    <div class="tab-solo2" ng-click="showChef($index)"><a>Chef</a></div>
+	    <div class="tab-solo1" ng-class="{'tab-activo':dish.show_flag!='chef'}" ng-click="showDescription($index)"><a>Descripcion</a></div>
+	    <div class="tab-solo2" ng-class="{'tab-activo':dish.show_flag=='chef'}" ng-click="showChef($index)"><a>Chef</a></div>
 	  </div>
 
 	  <div class="item" ng-show="dish.show_flag!='chef'"><!--****DESCRIPCION***DESCRIPCION****-->

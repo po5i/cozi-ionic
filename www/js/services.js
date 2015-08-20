@@ -20,7 +20,8 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                 headers: {'Authorization': "Token "+$rootScope.auth_data.token}
             });
             userPromise.success(function(data, status, headers, config){
-                $rootScope.chef_id = data.profile.get_chef_id;
+                if($rootScope.chef_id = data.profile)
+                    $rootScope.chef_id = data.profile.get_chef_id;
                 deferred.resolve(data);
             });
 
@@ -43,8 +44,9 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             var deferred = $q.defer();
 
             $http.post($rootScope.api_url+'/api-token/login/' + backend + '/', credentials ).success(function(data,status) {
-                if(status > 400){
+                if(status >= 400){
                     $rootScope.authenticated = false;
+                    deferred.resolve(false);
                 }
                 else{
                     //console.log(data);
@@ -52,17 +54,18 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                         $rootScope.authenticated = true;
                         localStorageService.set('currentUser',data);
                         localStorageService.set('backend',backend);
-                        deferred.resolve(data);
 
                         $rootScope.auth_data = data;
                     } else {
                         $rootScope.authenticated = false;
                     }
+                    deferred.resolve(data);
                     callback && callback();
                 }                
             }).error(function() {
                 $rootScope.authenticated = false;
                 callback && callback();
+                deferred.resolve(false);
             });
 
             return deferred.promise;
