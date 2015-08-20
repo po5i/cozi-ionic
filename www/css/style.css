@@ -108,7 +108,7 @@
 
 .has-header {
 	top: 60px !important;
-	background-color: #fff1e7;
+	background-color: #D66B22;
 }
 
 .cozi_barra_izq_fondo {
@@ -224,7 +224,7 @@
 
 .carta-menus {
 	background-color: transparent !important;
-	margin: 7px 7px 15px 7px !important;
+	margin: 10px 0px !important;
 	box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.3);
 	border-radius: none !important;
 }
@@ -268,7 +268,7 @@
 	color: white;
 	padding: 10px 15px !important;
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: bold;
 	text-transform: uppercase;
 	text-align: left;
 }
@@ -281,7 +281,7 @@
     top: 0;
     right: 0;
     font-size: 16px;
-    font-weight: normal;
+    font-weight: bold;
     padding: 10px 15px !important;
 }
 
@@ -340,6 +340,7 @@
 	width: 49.3%;
 	height: auto;
 	border-right: 1px solid #ddd;
+	display: inline-block;
 }
 
 .estrellas-agregar {
@@ -348,6 +349,32 @@
 
 .estrellas {
 	color: #ef7521;
+}
+
+.dv-agregar {
+	width: 49.3%;
+	height: auto;
+	display: inline-block;
+    text-align: right;
+}
+
+#quantity {
+	border: none !important;
+	border-bottom: 1px solid #ddd !important;
+	font-size: 0.9em;
+	font-weight: bold;
+	color: #ef7521;
+	padding-right: 3px;
+	text-align: center;
+}
+
+.btn.btn-sm.btn-primary {
+	border-radius: 20px;
+    background-color: #ef7521;
+    padding: 4px 14px!important;
+    color: white;
+    font-size: 0.9em;
+    margin: 0px 5px;
 }
 
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
@@ -362,7 +389,6 @@ ul.rating li {
 ul.rating li i {
   font-size: 20px;
 }
-
 
 
 /******* FINAL DE TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
