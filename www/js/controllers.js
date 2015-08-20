@@ -488,11 +488,9 @@ angular.module('starter.controllers', [])
   }
 
   $scope.save = function(file) {
-    //TODO: revisar
+    //DEPRECATED: revisar
     //http://forum.ionicframework.com/t/how-to-make-uploading-files-or-images-using-ionicframwork-or-angularjs/391/18
     //https://github.com/leon/angular-upload  
-
-    
 
 
     if($scope.dish_form_mode == 'new'){
@@ -514,13 +512,20 @@ angular.module('starter.controllers', [])
       newPromise.error(function(data, status, headers, config){      });*/
 
       //https://github.com/danialfarid/ng-file-upload
+      if(!file){
+        file = {};
+        file_to_upload = null;
+      }
+      else{
+        file_to_upload = file;
+      }
       file.upload = Upload.upload({
         url: $rootScope.api_url+'/api/dishadmin/',
         method: 'POST',
         headers: {'Authorization': "Token "+$rootScope.auth_data.token},
         fields: obj,
-        file: file,
-        fileFormDataName: 'myFile'
+        file: file_to_upload,
+        fileFormDataName: 'photo'
       });
 
       file.upload.then(function (response) {
@@ -557,19 +562,26 @@ angular.module('starter.controllers', [])
       newPromise.error(function(data, status, headers, config){      });*/
 
       //https://github.com/danialfarid/ng-file-upload
+      if(!file){
+        file = {};
+        file_to_upload = null;
+      }
+      else{
+        file_to_upload = file;
+      }
       file.upload = Upload.upload({
         url: $rootScope.api_url+'/api/dishadmin/' + $scope.dish.id + '/',
         method: 'PATCH',
         headers: {'Authorization': "Token "+$rootScope.auth_data.token},
         fields: obj,
-        file: file,
-        fileFormDataName: 'myFile'
+        file: file_to_upload,
+        fileFormDataName: 'photo'
       });
 
       file.upload.then(function (response) {
         $timeout(function () {
           //file.result = response.data;
-          $scope.dishes[$scope.dish_form_mode] = $scope.dish;
+          $scope.dishes[$scope.dish_form_mode] = response.data;
           $scope.dish = null;     
         });
       }, function (response) {
