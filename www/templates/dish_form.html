@@ -28,7 +28,7 @@
         <label class="item item-input">
           <span class="input-label">Nueva Foto</span>
           <!--input type="file" id="photo" name="photo[]"/-->
-          <input type="file" ngf-select ng-model="dish.photo" name="file" accept="image/*" capture ngf-max-size="10MB">
+          <input type="file" ngf-select ng-model="dish.photo" name="file" accept="image/*" ngf-capture="'camera'" ngf-max-size="10MB">
           <div><img ng-show="dishForm.file.$valid" ngf-src="!dish.photo.$error && dish.photo" class="thumb"></div>
         </label>
         <label class="item item-toggle">
