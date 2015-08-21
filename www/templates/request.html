@@ -38,20 +38,26 @@
 	    	{{dish.description}}
 	  	</div>
 		
-		<a class="item item-icon-left item-text-wrap balanced chef-tx">
+		<div class="item item-icon-left item-text-wrap balanced chef-tx">
 	    	<i class="icon ion-ios-pricetags"></i>{{dish.tags}}
-	    </a>
+	    </div>
 
 	  </div>
 
 	  <!--****CHEF***CHEF***CHEF***CHEF****-->
 	  <!--****CHEF***CHEF***CHEF***CHEF****-->
-	  <div class="item" ng-show="dish.show_flag=='chef'">
-	  	<div class="item item-avatar">
-	    <img ng-src="{{dish.chef.user.profile.avatar}}">
-	    
-	    
-	    <p><a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</a></p>
+	  <div class="item item-chef" ng-show="dish.show_flag=='chef'">
+	  	<div class="item item-avatar avatar-nombre">
+		    	<img ng-src="{{dish.chef.user.profile.avatar}}">    
+		    	<p>{{dish.chef.user.first_name}} {{dish.chef.user.last_name}}</p>
+	
+	    	<div class="bt-mas">
+	    		<a href="#/app/chefs/{{dish.chef.user.username}}/{{dish.chef.id}}">más...</a>
+	    	</div>
+	  	</div>
+
+	  	<div class="item">
+	  		<p> {{dish.chef.bio}}</p>
 	  	</div>
 	  	
 	  </div>
@@ -64,7 +70,7 @@
 	  	</div>
 		
 		<div class="dv-agregar">
-		  	<ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="20"></ngcart-addtocart>
+		  	<ngcart-addtocart id="{{dish.id}}" name="{{dish.name}}" price="{{dish.price}}" quantity="1" quantity-max="15"></ngcart-addtocart>
 		</div>
 
 	  </div>
