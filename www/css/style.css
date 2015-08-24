@@ -96,14 +96,14 @@
 
 
 .bar .title {
-	height: 60px !important;
+	height: 61px !important;
 	text-align: center !important;
 	color: #ffffff !important;
 }
 
 .title img {
 	width: auto;
-	height: 60px !important;
+	height: 61px !important;
 	display: inline-block;
 	text-align: center !important;
 	z-index: 200;
@@ -234,6 +234,7 @@
 	z-index: 900;
 	top: 60px !important;
 	line-height: normal !important;
+	border: none !important;
 	/*-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
 	-ms-transition: all .3s ease;
@@ -290,6 +291,7 @@ input.dv-input-buscar {
 .bt-cancelar-search {
 	color: white !important;
 	font-size: 0.9em !important;
+	font-weight: normal !important;
 	line-height: normal !important;
 	padding: 0px !important;
 	right: 10px !important;
