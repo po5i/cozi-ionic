@@ -75,14 +75,19 @@
 
 
 
+.bar.bar-stable {
+	border-color: transparent !important;
+	border-bottom: 1px solid #EF7622 !important;
+}
 
 .bar-stable {
 	/*background-color: #D66B22 !important;*/
 	background-color: #ef7622 !important;
 	height: 60px;
-	border-bottom: 1px solid #EF7622 !important;
 	color: #ffffff !important;
 }
+
+
 
 .barra_cozi_izq { 
 	background-color: #D66B22 !important;
@@ -177,9 +182,12 @@
 
 .bar-assertive {
 	height: 70px;
-	z-index: 100;
+	z-index: 300;
 	border: none;
+	background-image: none !important;
 	background-color:#D66B22 !important;
+	border-color: transparent !important;
+
 }
 
 /******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
@@ -218,9 +226,6 @@
 	max-height: 61px !important;
 }
 
-.bar.bar-stable {
-	border-color: none;
-}
 
 .carta-menus {
 	background-color: transparent !important;
