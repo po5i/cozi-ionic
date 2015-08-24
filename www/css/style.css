@@ -85,6 +85,7 @@
 	background-color: #ef7622 !important;
 	height: 60px;
 	color: #ffffff !important;
+	border: none !important;
 }
 
 
@@ -93,9 +94,6 @@
 	background-color: #D66B22 !important;
 }
 
-.bar-stable .button.button-clear {
-    color: #ffffff !important;
-}
 
 .bar .title {
 	height: 60px !important;
@@ -109,11 +107,13 @@
 	display: inline-block;
 	text-align: center !important;
 	z-index: 200;
+	border: none !important;
 }
 
 .has-header {
 	top: 60px !important;
 	background-color: #D66B22;
+	border: none !important;
 }
 
 .cozi_barra_izq_fondo {
@@ -222,10 +222,79 @@
 }
 
 .bar-stable .button.button-clear {
-	color: #D66B22 !important;
+	color: #c16223 !important;
 	max-height: 61px !important;
+	font-weight: 600;
 }
 
+.buscador-dv {
+	height: auto !important;
+	background-color: #ef7622;
+	padding: 0px 10px 10px 10px !important;
+	z-index: 900;
+	top: 60px !important;
+	line-height: normal !important;
+	/*-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+	-ms-transition: all .3s ease;
+	-o-transition: all .3s ease;
+	transition: all .3s ease;*/
+}
+
+input.dv-input-buscar::-webkit-input-placeholder {
+   color: #c16223;
+   font-size: 0.9em;
+   font-weight: bold;
+}
+
+input.dv-input-buscar:-moz-placeholder { /* Firefox 18- */
+   color: #c16223;
+   font-size: 0.9em;
+   font-weight: bold;  
+}
+
+input.dv-input-buscar::-moz-placeholder {  /* Firefox 19+ */
+   color: #c16223;
+   font-size: 0.9em;
+   font-weight: bold;  
+}
+
+input.dv-input-buscar:-ms-input-placeholder {  
+   color: #c16223;
+   font-size: 0.9em;
+   font-weight: bold;  
+}
+
+input.dv-input-buscar {
+	width: calc(100% - 80px);
+	background-color: #d66b22;
+	border-radius: 5px;
+	color: white !important;
+	display: inline-block;
+	padding: 0px 10px;
+	line-height: normal !important;
+}
+
+.bt-borrar {
+	position: absolute !important;
+	top: 0;
+	left: calc(100% - 113px);
+	padding: 0px !important;
+}
+
+.bt-borrar i.icon.ion-android-cancel.placeholder-icon:before {
+	color: #c16223;
+	font-size: 24px !important;
+}
+
+.bt-cancelar-search {
+	color: white !important;
+	font-size: 0.9em !important;
+	line-height: normal !important;
+	padding: 0px !important;
+	right: 10px !important;
+	top: -4px !important;
+}
 
 .carta-menus {
 	background-color: transparent !important;

@@ -9,14 +9,20 @@
       <ngcart-summary class="burb-carrito"></ngcart-summary>
     </ion-nav-buttons>
 
-  <ion-content>
-
-  	<div ng-show="search.flag">
-  		<input type="search" placeholder="Filtrar" ng-model="search.filters.tags"> <!--ng-change="doFilter()"-->
-		<button class="button button-clear" ng-click="cancelFilter()">
+    <div ng-show="search.flag" class="bar bar-subheader buscador-dv">
+  		<input type="search" placeholder="Filtrar" ng-model="search.filters.tags" class="dv-input-buscar"> <!--ng-change="doFilter()"-->
+		<button class="button button-clear bt-borrar" ng-click="cancelFilter()">
 		    <i class="icon ion-android-cancel placeholder-icon"></i>
 		</button>
+
+		<button class="button button-clear bt-cancelar-search" ng-click="cancelFilter();toggleSearch()">
+		Cancelar
+		</button>
   	</div>
+
+  <ion-content has-subheader="true">
+
+  	
 
     <div class="list card carta-menus" ng-repeat="dish in menu | filter:search.filters">
 
@@ -37,7 +43,7 @@
 
 	  <!-- TABS -->
 	  <div class="item tabs-carta">
-	    <div class="tab-solo1" ng-class="{'tab-activo':dish.show_flag!='chef'}" ng-click="showDescription($index)"><a>Descripcion</a></div>
+	    <div class="tab-solo1" ng-class="{'tab-activo':dish.show_flag!='chef'}" ng-click="showDescription($index)"><a>Descripción</a></div>
 	    <div class="tab-solo2" ng-class="{'tab-activo':dish.show_flag=='chef'}" ng-click="showChef($index)"><a>Chef</a></div>
 	  </div>
 
