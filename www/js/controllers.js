@@ -304,6 +304,24 @@ angular.module('starter.controllers', [])
   $scope.showChef = function(index){
     $scope.menu[index].show_flag = 'chef'
   };
+
+  $scope.search = {};
+  $scope.search.flag = false;
+  $scope.search.filters = null;
+
+  $scope.toggleSearch = function(){
+    $scope.search.flag = !$scope.search.flag;
+  }
+
+  $scope.doFilter = function(){
+    //filter $scope.menu
+    console.log($scope.search.filters);
+  }
+
+  $scope.cancelFilter = function(){
+    console.log($scope.search.filters);
+    $scope.search.filters = null;
+  }  
   
 
 })

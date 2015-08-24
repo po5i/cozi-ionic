@@ -1,5 +1,8 @@
 <ion-view view-title="Menú">
 	<ion-nav-buttons side="secondary" class="carr-and-burb">
+	  <button class="button button-clear" ng-click="toggleSearch()">
+        <i class="icon ion-search"></i>
+      </button>
       <button class="button button-clear" ng-click="checkout()">
         <i class="icon ion-android-cart"></i>
       </button>
@@ -8,7 +11,14 @@
 
   <ion-content>
 
-    <div class="list card carta-menus" ng-repeat="dish in menu">
+  	<div ng-show="search.flag">
+  		<input type="search" placeholder="Filtrar" ng-model="search.filters.tags"> <!--ng-change="doFilter()"-->
+		<button class="button button-clear" ng-click="cancelFilter()">
+		    <i class="icon ion-android-cancel placeholder-icon"></i>
+		</button>
+  	</div>
+
+    <div class="list card carta-menus" ng-repeat="dish in menu | filter:search.filters">
 
 
 	  <div class="item item-image fondo-imagen">
