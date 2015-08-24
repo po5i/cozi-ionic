@@ -1,6 +1,6 @@
 <ion-view view-title="Menú">
 	<ion-nav-buttons side="secondary" class="carr-and-burb">
-	  <button class="button button-clear" ng-click="toggleSearch()">
+	  <button class="button button-clear" ng-class="{'buscar-activo':search.flag == true}" ng-click="toggleSearch()">
         <i class="icon ion-search"></i>
       </button>
       <button class="button button-clear" ng-click="checkout()">

@@ -319,7 +319,6 @@ angular.module('starter.controllers', [])
   }
 
   $scope.cancelFilter = function(){
-    console.log($scope.search.filters);
     $scope.search.filters = null;
   }  
   
