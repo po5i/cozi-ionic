@@ -29,6 +29,14 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
+  
+  if ($rootScope.authenticated && typeof $scope.user === 'undefined') {
+      //get the user information
+      oauthService.getCurrentUser().then(function(data){
+        $scope.user = data;
+      });
+  }
+
   //RATE
   /////////////////////
 

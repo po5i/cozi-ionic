@@ -213,7 +213,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                         authorizationResult = false;
                         
                         delete $rootScope.auth_data;
-                        delete $rootScope.authenticated;
+                        $rootScope.authenticated = false;
                         localStorageService.clearAll();
                         
                     }  

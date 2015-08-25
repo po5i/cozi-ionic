@@ -46,11 +46,11 @@
 
     <ion-footer-bar align-title="left" class="bar-assertive">
     <div class="bt-iniciar-salir">
-          <button menu-close ng-click="login()" class="item-icon-left" ng-hide="user">
+          <button menu-close ng-click="login()" class="item-icon-left" ng-hide="authenticated">
             Iniciar sesión
           </button>
   
-          <button menu-close ng-click="logout()" ng-show="user" class="item-icon-left">
+          <button menu-close ng-click="logout()" ng-show="authenticated" class="item-icon-left">
             <i class="icon ion-close"></i>Salir
           </button>
 

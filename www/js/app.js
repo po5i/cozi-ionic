@@ -49,6 +49,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     $rootScope.authenticated = false;
     $rootScope.redirect = null;
+
+    // persistent session
+    var currentUser = localStorageService.get('currentUser');
+    if(currentUser){
+      //console.log(currentUser);
+      $rootScope.auth_data = currentUser;
+      $rootScope.authenticated = true;
+    }
   });
 
   //loading
@@ -66,13 +74,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
     $ionicLoading.hide();
   });
 
-  /*
-  // persistent session
-  var currentUser = localStorageService.get('currentUser');
-  if(currentUser){
-    $rootScope.api_auth = currentUser;
-  }
-  */
+  
+  
+  
 
 })
 
