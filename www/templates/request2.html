@@ -48,17 +48,24 @@
 			    <input type="date" ng-model="rq.date" required>
 			  </label>
 	
-			  <label class="item item-input item-stacked-label">
-			    <div class="input-label">
+			  <!--label class="item item-input item-stacked-label"-->
+			    <!--div class="input-label">
 			      Tipo
-			    </div>
-			    <select ng-model="rq.type">
+			    </div-->
+			    <!--select ng-model="rq.type">
 			      <option value="lunch">Lunch</option>
 			      <option value="almuerzo">Almuerzo</option>
 			      <option value="fiesta">Fiesta</option>
 			      <option value="cocktail">Cocktail</option>
-			    </select>
-			  </label>
+			    </select-->
+			    <label class="item item-radio" ng-repeat="val in [{value:'lunch',nombre:'Lunch'},{value:'almuerzo',nombre:'Almuerzo'},{value:'fiesta',nombre:'Fiesta'},{value:'cocktail',nombre:'Cocktail'}]">
+				    <input type="radio" name="group" ng-model="rq.type" ng-value="val.value">
+				    <div class="item-content">
+				      {{val.nombre}}
+				    </div>
+				    <i class="radio-icon ion-checkmark"></i>
+				</label>
+			  <!--/label-->
 	
 	  		  <label class="item item-input item-stacked-label">
 			    <span class="input-label">Dirección</span>
