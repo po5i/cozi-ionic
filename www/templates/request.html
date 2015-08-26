@@ -10,7 +10,7 @@
      
     </ion-nav-buttons>
 
-    <div ng-show="search.flag" class="bar bar-subheader buscador-dv">
+    <div ng-show="search.flag" class="bar bar-subheader buscador-dv animate-show ng-cloak">
   		<input type="search" placeholder="Filtrar" ng-model="search.filters.tags" class="dv-input-buscar"> <!--ng-change="doFilter()"-->
 		<button class="button button-clear bt-borrar" ng-click="cancelFilter()">
 		    <i class="icon ion-android-cancel placeholder-icon"></i>
@@ -22,8 +22,6 @@
   	</div>
 
   <ion-content has-subheader="true">
-
-  	
 
     <div class="list card carta-menus" ng-repeat="dish in menu | filter:search.filters">
 

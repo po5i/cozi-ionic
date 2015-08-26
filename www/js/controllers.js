@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService, $ionicHistory) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService, $ionicHistory, Alertify) {
 
   oauthService.initialize();
 
@@ -151,11 +151,11 @@ angular.module('starter.controllers', [])
       });
 
       newPromise.success(function(data, status, headers, config){
-          alert("Solicitud enviada");
+          Alertify.success("Solicitud enviada");
       });
 
       newPromise.error(function(data, status, headers, config){
-          alert("Ha ocurrido un error "+status);
+          Alertify.error("Ha ocurrido un error "+status);
       });
     }
 
@@ -216,7 +216,7 @@ angular.module('starter.controllers', [])
     });
 
     promiseB.then(function(data){
-        if ($rootScope.authenticated) {
+      if ($rootScope.authenticated) {
           $scope.error = false;    
           $scope.loginData = {};
           
@@ -232,7 +232,7 @@ angular.module('starter.controllers', [])
           
       } else {
           $scope.error = true;
-          alert("Ha ocurrido un error al ingresar con su cuenta");
+          Alertify.error("Ha ocurrido un error al ingresar con su cuenta");
       }
     });
 
@@ -270,16 +270,16 @@ angular.module('starter.controllers', [])
       var newPromise = $http.post($rootScope.api_url+'/api/users/',$scope.registerData);
 
       newPromise.success(function(data, status, headers, config){
-          alert('Nuevo usuario registrado, por favor ingrese con sus credenciales');
+          Alertify.success('Nuevo usuario registrado, por favor ingrese con sus credenciales');
           $scope.registerData = {};
       });
 
       newPromise.error(function(data, status, headers, config){
           if(status==400){
-              alert("No es posible registrarse, probablemente el usuario ya existe.");
+              Alertify.error("No es posible registrarse, probablemente el usuario ya existe.");
           }
           else{
-              alert("Ha ocurrido un error "+status);
+              Alertify.error("Ha ocurrido un error "+status);
           }
       });
 
@@ -350,7 +350,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService) {
+.controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService, Alertify) {
     //PROFILE
     ////////////////////
     $scope.user = null;
@@ -373,11 +373,11 @@ angular.module('starter.controllers', [])
         });
 
         userPromise.success(function(data, status, headers, config){
-            alert('Cambios guardados');
+            Alertify.success('Cambios guardados');
         });
 
         userPromise.error(function(data, status, headers, config){
-            alert("Ha ocurrido un error "+status);
+            Alertify.error("Ha ocurrido un error "+status);
         });
     };
 })
@@ -439,7 +439,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal, Upload, $timeout) {
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal, Upload, $timeout, Alertify) {
   //CHEFS
   /////////////////////
   $scope.chef_id = $rootScope.chef_id;
@@ -493,7 +493,7 @@ angular.module('starter.controllers', [])
       });
       newPromise.success(function(data, status, headers, config){
         $scope.pending[model_index].status = request_status;
-        alert("Estado cambiado");
+        Alertify.success("Estado cambiado");
         //cambiar el model
       });
       newPromise.error(function(data, status, headers, config){      });
