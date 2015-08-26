@@ -536,3 +536,18 @@ ul.rating li i {
 .perfil-list{
 	background-color: #ffffff;
 }
+
+/* prueba de animacion del bucador */
+/* tiene un problema: se ve cuando se carga la pagina un instante; */
+/*.buscador-dv.animate-show {
+  opacity: 1;
+}
+
+.buscador-dv.animate-show.ng-hide-add, .buscador-dv.animate-show.ng-hide-remove {
+  transition: all linear 0.20s;
+}
+
+.buscador-dv.animate-show.ng-hide {
+  opacity: 0;
+}*/
+

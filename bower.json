@@ -9,6 +9,7 @@
     "angular-local-storage": "~0.2.2",
     "jquery": "~2.1.4",
     "ionic-rating": "~0.1.0",
-    "ng-file-upload": "~7.0.6"
+    "ng-file-upload": "~7.0.6",
+    "ng-alertify": "~0.8.0"
   }
 }
