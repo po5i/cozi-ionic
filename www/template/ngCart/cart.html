@@ -6,52 +6,63 @@
 
     <table class="table table-striped ngCart cart">
 
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th>Cantidad</th>
-                <th>Precio</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tfoot>
+        <div class="cabecera-cart">
+        
+            <div class="porcentaje-1">••</div>
+            <div class="porcentaje-2">Detalle de pedido</div>
+            <div class="porcentaje-3">Cantidad</div>
+            <!--th>Precio</th-->
+            <div class="porcentaje-4">$ valor</div>
+            
+        </div>
+
+        
+
+        <tbody class="cuerpo-cart">
+            <div ng-repeat="item in ngCart.getCart().items track by $index" class="un-pedido">
+
+                <div class="porcentaje-1">
+                    <i class="icon ion-android-cancel" ng-click="ngCart.removeItemById(item.getId())"></i>
+                </div>
+
+                <div class="porcentaje-2 alt-tx">{{ item.getName() }}</div>
+                <div class="porcentaje-3 alt-tx pad-borde">
+                    <i class="icon ion-minus iconos-p3" ng-class="{'disabled':item.getQuantity()==1}"
+                          ng-click="item.setQuantity(-1, true)"></i>
+                    &nbsp;
+                    {{ item.getQuantity() | number }}
+                    &nbsp;
+                    <i class="icon ion-plus iconos-p3" ng-click="item.setQuantity(1, true)"></i>
+                </div>
+
+                <!--<td>{{ item.getPrice() | currency}}</td-->
+                <div class="porcentaje-4 alt-tx aleft">{{ item.getTotal() | currency:""}}</div>
+            </div>
+        </tbody>
+
+        <tfoot class="pie-cart">
             <tr ng-show="ngCart.getTax()">
                 <td></td>
-                <td></td>
-                <td></td>
                 <td>Imp. ({{ ngCart.getTaxRate() }}%):</td>
+                <!--<td></td-->
                 <td>{{ ngCart.getTax() | currency }}</td>
+                <td></td>
             </tr>
             <tr ng-show="ngCart.getShipping()">
                 <td></td>
-                <td></td>
-                <td></td>
                 <td>Envío:</td>
+                <!--td></td-->
                 <td>{{ ngCart.getShipping() | currency }}</td>
+                <td></td>
             </tr>
             <tr>
                 <td></td>
-                <td></td>
-                <td></td>
                 <td>Total:</td>
+                <!--td></td-->
                 <td>{{ ngCart.totalCost() | currency }}</td>
+                <td></td>
             </tr>
         </tfoot>
-        <tbody>
-            <tr ng-repeat="item in ngCart.getCart().items track by $index">
-                <td><i class="icon ion-android-cancel" ng-click="ngCart.removeItemById(item.getId())"></i></td>
 
-                <td>{{ item.getName() }}</td>
-                <td>
-                    <i class="icon ion-minus" ng-class="{'disabled':item.getQuantity()==1}"
-                          ng-click="item.setQuantity(-1, true)"></i>
-                          &nbsp;&nbsp;
-                    {{ item.getQuantity() | number }}&nbsp;&nbsp;
-                    <i class="icon ion-plus" ng-click="item.setQuantity(1, true)"></i></td>
-                <td>{{ item.getPrice() | currency}}</td>
-                <td>{{ item.getTotal() | currency }}</td>
-            </tr>
-        </tbody>
     </table>
 </div>
