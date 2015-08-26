@@ -190,6 +190,8 @@
 
 }
 
+
+
 /******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
 /******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
 /******* REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  REQUEST  ******/
@@ -537,6 +539,7 @@ ul.rating li i {
 	background-color: #ffffff;
 }
 
+
 /* prueba de animacion del bucador */
 /* tiene un problema: se ve cuando se carga la pagina un instante; */
 /*.buscador-dv.animate-show {
@@ -550,4 +553,136 @@ ul.rating li i {
 .buscador-dv.animate-show.ng-hide {
   opacity: 0;
 }*/
+
+
+/******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
+/******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
+/******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
+/******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
+/******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
+
+.item.item-mis-pedidos {
+	border: none;
+	background-color: white;
+	padding: 5px 0px 15px 0px !important;
+	margin: 10px 0px !important;
+	box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
+}
+
+.item.item-divider {
+	background-color: transparent;
+	border: none !important;
+	border-bottom: 1px solid #ddd !important;
+	color: #ef7521 !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	text-align: center;
+}
+
+.item.item-divider i {
+	font-size: 25px;
+	position: absolute;
+	left: 10px;
+	top: 6px;
+
+}
+
+.list.list-pedidos {
+	padding: 10px 10px 0px 10px;
+	color: #666;
+	font-size: 0.9em;
+}
+
+/******* CABECERA CART*** CABECERA CART *** CABECERA CART ******/
+/******* CABECERA CART*** CABECERA CART *** CABECERA CART ******/
+
+.cabecera-cart {
+	width: 100%;
+	color: #ef7622;
+	font-style: italic;
+	padding: 3px 0px;
+	text-align: center;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	z-index: 300;
+	border-bottom: 1px dotted #ddd;
+}
+
+
+.porcentaje-1{
+	width: 7%;
+	float: left;
+}
+
+.porcentaje-2{
+	width:45%;
+	float: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0px 6px;
+	border-right: 1px solid #ddd;
+}
+.porcentaje-3{
+	width:27%;
+	float: left;
+	text-align: center;
+	padding: 0px 6px;
+	border-right: 1px solid #ddd;
+
+}
+.porcentaje-4{
+	width:20%;
+	float: left;
+	text-align: center;
+}
+.aleft {
+	color: #ef7622;
+	font-weight: bold;
+	font-size: 0.9em;
+}
+
+
+.cuerpo-cart {
+	width: 100%;
+
+	border-bottom: 1px dotted #ddd;
+	color: #ef7622;
+	font-style: italic;
+	padding: 3px 0px;
+	text-align: center;
+	display: block;
+	position: relative;
+	overflow: hidden;
+}
+.un-pedido {
+	width: 100%;
+	height: 44px;
+	display: block;
+	position: relative;
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0px;
+}
+
+.porcentaje-1 i.icon.ion-android-cancel {
+	color: #ef7622;
+	font-size: 24px;
+}
+
+.alt-tx {
+	line-height: 24px;
+}
+
+.pad-borde {
+	font-weight: 800;
+	line-height: ;
+}
+
+.iconos-p3 {
+	font-size: 20px;
+	color: #2bbc69;
+}
 

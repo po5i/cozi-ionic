@@ -216,7 +216,7 @@ angular.module('starter.controllers', [])
     });
 
     promiseB.then(function(data){
-        if ($rootScope.authenticated) {
+      if ($rootScope.authenticated) {
           $scope.error = false;    
           $scope.loginData = {};
           

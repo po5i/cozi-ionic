@@ -44,11 +44,11 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             var deferred = $q.defer();
 
             $http.post($rootScope.api_url+'/api-token/login/' + backend + '/', credentials ).success(function(data,status) {
-                if(status >= 400){
-                    $rootScope.authenticated = false;
-                    deferred.resolve(false);
-                }
-                else{
+                //if(status >= 400){
+                //    $rootScope.authenticated = false;
+                //    deferred.resolve(false);
+                //}
+                //else{
                     //console.log(data);
                     if (data.token) {
                         $rootScope.authenticated = true;
@@ -61,11 +61,11 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                     }
                     deferred.resolve(data);
                     callback && callback();
-                }                
-            }).error(function() {
+                //}                
+            }).error(function(data,status) {
                 $rootScope.authenticated = false;
                 callback && callback();
-                deferred.resolve(false);
+                deferred.resolve(data);
             });
 
             return deferred.promise;
