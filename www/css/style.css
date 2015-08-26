@@ -546,11 +546,11 @@ ul.rating li i {
 /******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
 /******* ITEM MIS PEDIDOS *** ITEM MIS PEDIDOS*** ITEM MIS PEDIDOS ******/
 
-.item.item-mis-pedidos {
+.item.item-ordenando {
 	border: none;
 	background-color: white;
 	padding: 5px 0px 15px 0px !important;
-	margin: 10px 0px !important;
+	margin: 10px 0px 15px 0px!important;
 	box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -610,6 +610,7 @@ ul.rating li i {
     overflow: hidden;
     padding: 0px 6px;
 	border-right: 1px solid #ddd;
+	text-align: left;
 }
 .porcentaje-3{
 	width:27%;
@@ -622,19 +623,17 @@ ul.rating li i {
 .porcentaje-4{
 	width:20%;
 	float: left;
-	text-align: center;
+	text-align: right;
 }
 .aleft {
 	color: #ef7622;
-	font-weight: bold;
 	font-size: 0.9em;
+	text-align: right;
 }
 
 
 .cuerpo-cart {
 	width: 100%;
-
-	border-bottom: 1px dotted #ddd;
 	color: #ef7622;
 	font-style: italic;
 	padding: 3px 0px;
@@ -671,3 +670,35 @@ ul.rating li i {
 	color: #2bbc69;
 }
 
+.marg-tope {
+	margin-top: 25px;
+}
+
+div.pie-cart-interior {
+	width: 100%;
+	min-height: 20px;
+	display: block;
+	position: relative;
+}
+
+.porcentaje-50 {
+	font-size: 0.9em;
+	color: #2bbc69;
+	width:50%;
+	float: left;
+	text-align: left;
+	padding: 1px 5px 1px 8.8%;
+	position: relative;
+}
+
+.alright {
+	text-align: right;
+	color:#ef7622;
+}
+
+.tx-negrita {
+	font-weight: bold !important;
+	font-size: 16px;
+	border-top: 1px dotted #ddd;
+	padding-top: 5px;
+}

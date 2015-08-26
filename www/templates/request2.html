@@ -2,7 +2,7 @@
   <ion-content>
     
     
-  	<div class="item item-mis-pedidos">
+  	<div class="item item-ordenando">
 
     	<div class="item item-divider">
     		<i class="icon ion-android-cart"></i>Mis Pedidos
@@ -13,56 +13,68 @@
   		</div>
   	</div>
 
-  	<div class="item item-divider">
-    	<i class="icon ion-ios-nutrition"></i>Mis Prefencias
-  	</div>
-  	<div class="list">
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Cosas que no como</span>
-	    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Consideraciones de salud</span>
-	    <input type="text" placeholder="Intolerante a la lactosa" ng-model="user.profile.concerns">
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Alergias</span>
-	    <input type="text" placeholder="Maní" ng-model="user.profile.allergies">
-	  </label>
+
+
+  	<div class=" item item-ordenando">
+  		<div class="item item-divider">
+    		<i class="icon ion-ios-nutrition"></i>Mis Prefencias
+  		</div>
+  		<div class="list">
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Cosas que no como</span>
+		    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Consideraciones de salud</span>
+		    <input type="text" placeholder="Intolerante a la lactosa" ng-model="user.profile.concerns">
+		  </label>
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Alergias</span>
+		    <input type="text" placeholder="Maní" ng-model="user.profile.allergies">
+		  </label>
+		</div>
 	</div>
 
-	<div class="item item-divider">
-    	<i class="icon ion-ios-location"></i>Confirmación
-  	</div>
-  	<div class="list">
-  	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Fecha de visita</span>
-	    <input type="date" ng-model="rq.date" required>
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <div class="input-label">
-	      Tipo
-	    </div>
-	    <select ng-model="rq.type">
-	      <option value="lunch">Lunch</option>
-	      <option value="almuerzo">Almuerzo</option>
-	      <option value="fiesta">Fiesta</option>
-	      <option value="cocktail">Cocktail</option>
-	    </select>
-	  </label>
-  	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Dirección</span>
-	    <input type="text" placeholder="Sea específico e incluya referencias" ng-model="user.profile.address" required>
-	  </label>
-	  <label class="item item-input item-stacked-label">
-	    <span class="input-label">Telefono</span>
-	    <input type="text" placeholder="Por si acaso" ng-model="user.profile.phone">
-	  </label>
-	  <button class="button button-block button-positive" ng-click="doCheckout()">
-		  Realizar pedido
-	  </button>
 
-	 </div>
+
+	<div class="item item-ordenando">
+		<div class="item item-divider">
+    		<i class="icon ion-ios-location"></i>Confirmación
+  		</div>
+
+  		<div class="list">
+  		  <label class="item item-input item-stacked-label">
+			    <span class="input-label">Fecha de visita</span>
+			    <input type="date" ng-model="rq.date" required>
+			  </label>
+	
+			  <label class="item item-input item-stacked-label">
+			    <div class="input-label">
+			      Tipo
+			    </div>
+			    <select ng-model="rq.type">
+			      <option value="lunch">Lunch</option>
+			      <option value="almuerzo">Almuerzo</option>
+			      <option value="fiesta">Fiesta</option>
+			      <option value="cocktail">Cocktail</option>
+			    </select>
+			  </label>
+	
+	  		  <label class="item item-input item-stacked-label">
+			    <span class="input-label">Dirección</span>
+			    <input type="text" placeholder="Sea específico e incluya referencias" ng-model="user.profile.address" required>
+			  </label>
+	
+		  <label class="item item-input item-stacked-label">
+		    <span class="input-label">Telefono</span>
+		    <input type="text" placeholder="Por si acaso" ng-model="user.profile.phone">
+		  </label>
+
+		  <button class="button button-block button-positive" ng-click="doCheckout()">
+			  Realizar pedido
+		  </button>
+		</div>
+	</div>
 
   </ion-content>
 </ion-view>

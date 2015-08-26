@@ -41,27 +41,18 @@
         </tbody>
 
         <tfoot class="pie-cart">
-            <tr ng-show="ngCart.getTax()">
-                <td></td>
-                <td>Imp. ({{ ngCart.getTaxRate() }}%):</td>
-                <!--<td></td-->
-                <td>{{ ngCart.getTax() | currency }}</td>
-                <td></td>
-            </tr>
-            <tr ng-show="ngCart.getShipping()">
-                <td></td>
-                <td>Envío:</td>
-                <!--td></td-->
-                <td>{{ ngCart.getShipping() | currency }}</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Total:</td>
-                <!--td></td-->
-                <td>{{ ngCart.totalCost() | currency }}</td>
-                <td></td>
-            </tr>
+            <div ng-show="ngCart.getTax()" class="pie-cart-interior marg-tope">
+                <div class="porcentaje-50">Imp. ({{ ngCart.getTaxRate() }}%):</div>
+                <div class="porcentaje-50 alright">{{ ngCart.getTax() | currency }}</div>
+            </div>
+            <div ng-show="ngCart.getShipping()" class="pie-cart-interior">
+                <div class="porcentaje-50">Envío:</div>
+                <div class="porcentaje-50 alright" >{{ ngCart.getShipping() | currency }}</div>
+            </div>
+            <div class="pie-cart-interior marg-tope tx-negrita">
+                <div class="porcentaje-50">Total:</div>
+                <div class="porcentaje-50 alright">{{ ngCart.totalCost() | currency }}</div>
+            </div>
         </tfoot>
 
     </table>
