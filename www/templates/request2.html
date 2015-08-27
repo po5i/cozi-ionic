@@ -19,7 +19,7 @@
   		<div class="item item-divider">
     		<i class="icon ion-ios-nutrition"></i>Mis Prefencias
   		</div>
-  		<div class="list">
+  		<div class="list list-mis-preferencias">
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Cosas que no como</span>
 		    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
@@ -37,16 +37,16 @@
 
 
 
-	<div class="item item-ordenando">
+	<div class="item item-ordenando sin-margen-abajo">
 		<div class="item item-divider">
     		<i class="icon ion-ios-location"></i>Confirmación
   		</div>
 
-  		<div class="list">
-  		  <label class="item item-input item-stacked-label">
+  		<div class="list list-confirmacion">
+  		  	<label class="item item-input item-stacked-label">
 			    <span class="input-label">Fecha de visita</span>
 			    <input type="date" ng-model="rq.date" required>
-			  </label>
+			</label>
 	
 			  <!--label class="item item-input item-stacked-label"-->
 			    <!--div class="input-label">
@@ -58,6 +58,11 @@
 			      <option value="fiesta">Fiesta</option>
 			      <option value="cocktail">Cocktail</option>
 			    </select-->
+			   <!--/label-->
+
+			<label class="item item-input item-stacked-label">
+
+				<span class="input-label">Fecha de visita</span>
 			    <label class="item item-radio" ng-repeat="val in [{value:'lunch',nombre:'Lunch'},{value:'almuerzo',nombre:'Almuerzo'},{value:'fiesta',nombre:'Fiesta'},{value:'cocktail',nombre:'Cocktail'}]">
 				    <input type="radio" name="group" ng-model="rq.type" ng-value="val.value">
 				    <div class="item-content">
@@ -65,7 +70,8 @@
 				    </div>
 				    <i class="radio-icon ion-checkmark"></i>
 				</label>
-			  <!--/label-->
+			</label>
+			  
 	
 	  		  <label class="item item-input item-stacked-label">
 			    <span class="input-label">Dirección</span>
@@ -77,7 +83,7 @@
 		    <input type="text" placeholder="Por si acaso" ng-model="user.profile.phone">
 		  </label>
 
-		  <button class="button button-block button-positive" ng-click="doCheckout()">
+		  <button class="button button-block button-positive bt-guardar-carrito" ng-click="doCheckout()">
 			  Realizar pedido
 		  </button>
 		</div>

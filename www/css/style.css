@@ -717,3 +717,121 @@ div.pie-cart-interior {
 	border-top: 1px dotted #ddd;
 	padding-top: 5px;
 }
+
+
+/******* ITEM MIS PREFENCIAS *** ITEM MIS PREFENCIAS*** ITEM MIS PREFERECNIAS ******/
+/******* ITEM MIS PREFENCIAS *** ITEM MIS PREFENCIAS*** ITEM MIS PREFERECNIAS ******/
+/******* ITEM MIS PREFENCIAS *** ITEM MIS PREFENCIAS*** ITEM MIS PREFERECNIAS ******/
+/******* ITEM MIS PREFENCIAS *** ITEM MIS PREFENCIAS*** ITEM MIS PREFERECNIAS ******/
+/******* ITEM MIS PREFENCIAS *** ITEM MIS PREFENCIAS*** ITEM MIS PREFERECNIAS ******/
+
+.list.list-mis-preferencias {
+	padding: 0px 10px; 
+
+}
+
+.item-stacked-label {
+	padding: 10px 0 0px 5px !important;
+	border-right: none;
+	border-left: none;
+}
+
+.input-label {
+	color: #ef7622 !important;
+	font-size: 0.9em !important;
+	font-weight: 600;
+	padding: 14px 10px 0px 0px !important;
+}
+
+.item-input input {
+	color: #666 !important;
+    font-size: 0.9em;
+    font-weight: normal;
+    padding: 2px 0px 0px 0px;
+    height: 28px;
+}
+
+.item-input input::-webkit-input-placeholder {
+   color: #ccc;
+   font-size: 0.95em;
+   font-weight: 300;
+   font-style: italic;
+}
+
+.item-input input:-moz-placeholder { /* Firefox 18- */
+   color: #ccc;
+   font-size: 0.95em;
+   font-weight: 300;
+   font-style: italic;  
+}
+
+.item-input input::-moz-placeholder {  /* Firefox 19+ */
+   color: #ccc;
+   font-size: 0.95em;
+   font-weight: 300;
+   font-style: italic;  
+}
+
+.item-input input:-ms-input-placeholder {  
+   color: #ccc;
+   font-size: 0.95em;
+   font-weight: 300;
+   font-style: italic;  
+}
+
+.list.list-confirmacion {
+	padding: 0px 10px; 
+
+}
+
+input:required {
+	box-shadow: none;
+
+}
+
+
+
+/******* ITEM CONFIRMACION *** ITEM CONFIRMACION *** ITEM CONFIRMACION ******/
+/******* ITEM CONFIRMACION *** ITEM CONFIRMACION *** ITEM CONFIRMACION ******/
+/******* ITEM CONFIRMACION *** ITEM CONFIRMACION *** ITEM CONFIRMACION ******/
+/******* ITEM CONFIRMACION *** ITEM CONFIRMACION *** ITEM CONFIRMACION ******/
+/******* ITEM CONFIRMACION *** ITEM CONFIRMACION *** ITEM CONFIRMACION ******/
+
+.item.item-radio {
+	padding: 0;
+    color: #666;
+    font-size: 0.9em;
+    border: none;
+}
+
+.item-radio .item-content {
+	padding: 10px 50px 10px 10px;
+	margin-left: 15px;
+}
+
+.item-radio .radio-icon {
+	padding: 8px !important;
+	font-size: 18px !important;
+}
+
+.item-radio input:checked ~ .item-content {
+	background-color: transparent !important;
+}
+
+.bt-guardar-carrito {
+	background-color: #ef7622 !important;
+    border: none;
+    border-radius: 40px;
+    padding: 10px 25px !important;
+	color: white !important;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: normal;
+    width: auto !important;
+    margin: 20px auto 10px auto !important;
+}
+
+.item.item-ordenando.sin-margen-abajo {
+	margin: 10px 0px 0px 0px !important;
+}
