@@ -3,10 +3,13 @@
     
   <form name="profileForm" class="perfil-list" id="informacion_editable" ng-submit="profileForm.$valid && updateProfile()" novalidate>
 
+    
+<div class=" item item-ordenando">
+
     <div class="item item-divider">
-    	<i class="icon ion-person"></i> Datos Personales
+    	<i class="icon ion-android-person"></i> Datos Personales
   	</div>
-    <div class="list">
+    <div class="list list-pedidos">
 	  <label class="item item-input item-stacked-label">
 	    <span class="input-label">Username</span>
 	    <input type="text" ng-model="user.username">
@@ -52,11 +55,16 @@
 	    <input type="text" ng-model="user.profile.country">
 	  </label>
 	</div>
+</div>
+
+
+
+<div class=" item item-ordenando">
 
 	<div class="item item-divider">
-    	<i class="icon ion-ios-nutrition"></i> Salud & Ingredientes
+    	<i class="icon ion-heart"></i> Preferencias
   	</div>
-  	<div class="list">
+  	<div class="list list-confirmacion">
 	  <label class="item item-input item-stacked-label">
 	    <span class="input-label">Cosas que no como</span>
 	    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
@@ -69,11 +77,17 @@
 	    <span class="input-label">Alergias</span>
 	    <input type="text" placeholder="Maní" ng-model="user.profile.allergies">
 	  </label>
-	</div>
 
-	<button class="button button-block button-positive">
+	  <button class="button button-block button-positive bt-guardar-carrito">
 	  Guardar
-  	</button>
+  	  </button>
+
+
+	</div>
+</div>
+
+
+	
 
   </form>
 
