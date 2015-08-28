@@ -13,7 +13,7 @@
   		</div>
   	</div>
 
-
+  	<form name="requestForm" ng-submit="requestForm.$valid && doCheckout()" novalidate>
 
   	<div class=" item item-ordenando">
   		<div class="item item-divider">
@@ -22,15 +22,15 @@
   		<div class="list list-mis-preferencias">
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Cosas que no como</span>
-		    <input type="text" placeholder="Fréjol" ng-model="user.profile.dont_eat">
+		    <input type="text" placeholder="Fréjol" ng-model="rq.dont_eat">
 		  </label>
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Consideraciones de salud</span>
-		    <input type="text" placeholder="Intolerante a la lactosa" ng-model="user.profile.concerns">
+		    <input type="text" placeholder="Intolerante a la lactosa" ng-model="rq.concerns">
 		  </label>
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Alergias</span>
-		    <input type="text" placeholder="Maní" ng-model="user.profile.allergies">
+		    <input type="text" placeholder="Maní" ng-model="rq.allergies">
 		  </label>
 		</div>
 	</div>
@@ -44,7 +44,7 @@
 
   		<div class="list list-confirmacion">
   		  	<label class="item item-input item-stacked-label">
-			    <span class="input-label">Fecha de visita</span>
+			    <span class="input-label">Fecha de visita *</span>
 			    <input type="date" ng-model="rq.date" required>
 			</label>
 	
@@ -62,7 +62,7 @@
 
 			<label class="item item-input item-stacked-label">
 
-				<span class="input-label">Tipo de Orden</span>
+				<span class="input-label">Tipo de Orden *</span>
 			    <label class="item item-radio" ng-repeat="val in [{value:'lunch',nombre:'Lunch'},{value:'almuerzo',nombre:'Almuerzo'},{value:'fiesta',nombre:'Fiesta'},{value:'cocktail',nombre:'Cocktail'}]">
 				    <input type="radio" name="group" ng-model="rq.type" ng-value="val.value">
 				    <div class="item-content">
@@ -74,20 +74,22 @@
 			  
 	
 	  		  <label class="item item-input item-stacked-label">
-			    <span class="input-label">Dirección</span>
-			    <input type="text" placeholder="Sea específico e incluya referencias" ng-model="user.profile.address" required>
+			    <span class="input-label">Dirección *</span>
+			    <input type="text" placeholder="Sea específico e incluya referencias" ng-model="rq.address" required>
 			  </label>
 	
 		  <label class="item item-input item-stacked-label">
 		    <span class="input-label">Telefono</span>
-		    <input type="text" placeholder="Por si acaso" ng-model="user.profile.phone">
+		    <input type="text" placeholder="Por si acaso" ng-model="rq.phone">
 		  </label>
 
-		  <button class="button button-block button-positive bt-guardar-carrito" ng-click="doCheckout()">
+		  <button class="button button-block button-positive bt-guardar-carrito" type="submit">
 			  Realizar pedido
 		  </button>
 		</div>
 	</div>
+
+	</form>
 
   </ion-content>
 </ion-view>

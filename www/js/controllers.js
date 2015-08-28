@@ -29,13 +29,6 @@ angular.module('starter.controllers', [])
     $scope.modal = modal;
   });
 
-  
-  if ($rootScope.authenticated && typeof $scope.user === 'undefined') {
-      //get the user information
-      oauthService.getCurrentUser().then(function(data){
-        $scope.user = data;
-      });
-  }
 
   //RATE
   /////////////////////
@@ -110,19 +103,23 @@ angular.module('starter.controllers', [])
   /////////////////////
 
   $scope.checkout = function() {
-    //check if authentication
-    /*if (!$rootScope.authenticated) {
-      //event.preventDefault();
-      // get me a login!
-      $scope.modal.show();
+    if ($rootScope.authenticated) {
+        //update the user information
+        oauthService.getCurrentUser().then(function(data){
+          $scope.user = data;
+          
+          $scope.rq.address = $scope.user.profile.address;
+          $scope.rq.phone = $scope.user.profile.phone;
+          $scope.rq.dont_eat = $scope.user.profile.dont_eat;
+          $scope.rq.concerns = $scope.user.profile.concerns;
+          $scope.rq.allergies = $scope.user.profile.allergies;
+        });
     }
-    else{
-      $state.go('app.request2');  
-    }*/
     $state.go('app.request2');  
   }
 
-  $scope.rq = {}
+  $scope.rq = {};
+
   $scope.doCheckout = function() {
     //guardar el request, por cada plato
     var items = ngCart.getItems();
@@ -135,11 +132,11 @@ angular.module('starter.controllers', [])
       req.type = $scope.rq.type;
       req.servings = items[i].getQuantity();
       req.date = $scope.rq.date;
-      req.address = $scope.user.profile.address;
-      req.phone = $scope.user.profile.phone;
-      req.dont_eat = $scope.user.profile.dont_eat;
-      req.concerns = $scope.user.profile.concerns;
-      req.allergies = $scope.user.profile.allergies;
+      req.address = $scope.rq.address;
+      req.phone = $scope.rq.phone;
+      req.dont_eat = $scope.rq.dont_eat;
+      req.concerns = $scope.rq.concerns;
+      req.allergies = $scope.rq.allergies;
       req.price = items[i].getPrice();
       req.status = "solicitado";
 
@@ -353,7 +350,7 @@ angular.module('starter.controllers', [])
 .controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService, Alertify) {
     //PROFILE
     ////////////////////
-    $scope.user = null;
+    //$scope.user = null;
 
     //if(typeof $rootScope.auth_data !== 'undefined'){
     if ($rootScope.authenticated) {
