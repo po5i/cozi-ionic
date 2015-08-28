@@ -121,6 +121,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     .state('app.request2', {
       url: '/request2',
+      cache: false,
       views: {
         'menuContent': {
           templateUrl: 'templates/request2.html'
@@ -142,6 +143,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     .state('app.history', {
         url: '/history',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/history.html',
@@ -154,6 +156,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       })
     .state('app.profile', {
         url: '/profile',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/profile.html',
@@ -167,6 +170,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     .state('app.pending', {
         url: '/pending',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/pending.html',
@@ -180,6 +184,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     .state('app.dishmanager', {
         url: '/dishmanager',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/dishmanager.html',
@@ -193,6 +198,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
 
     .state('app.rate', {
         url: '/rate',
+        cache: false,
         views: {
           'menuContent': {
             templateUrl: 'templates/rate.html'
