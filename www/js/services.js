@@ -22,7 +22,10 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             userPromise.success(function(data, status, headers, config){
                 if($rootScope.chef_id = data.profile)
                     $rootScope.chef_id = data.profile.get_chef_id;
-                deferred.resolve(data);
+            });
+
+            userPromise.error(function(data, status, headers, config){
+                deferred.reject(data,status);
             });
 
             return deferred.promise;
@@ -35,6 +38,10 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             });
             userPromise.success(function(data, status, headers, config){
                 deferred.resolve(data);
+            });
+
+            userPromise.error(function(data, status, headers, config){
+                deferred.reject(data);
             });
 
             return deferred.promise;
@@ -176,10 +183,9 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                     loginPromise.error(function(data, status, headers, config){
                         console.error("Ha ocurrido un error");
                         console.error(data);
-                        deferred.resolve(data);
+                        deferred.reject(data,status);
                     });
 
-                    //deferred.resolve();
             })
             .fail(function (err) {
               //handle error with err
@@ -198,6 +204,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             return deferred.promise;
         },*/
         clearCache: function() {
+            var deferred = $q.defer();
             $rootScope.authenticated = false;
             if(typeof $rootScope.auth_data !== 'undefined'){
                 var loginPromise = $http.get($rootScope.api_url+'/api-token/logout/',{                        
@@ -217,12 +224,15 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                         localStorageService.clearAll();
                         
                     }  
+                    deferred.resolve(data);
                 });
                 loginPromise.error(function(data, status, headers, config){
-                    console.error("Ha ocurrido un error");
-                    console.error(data);
+                    //console.error("Ha ocurrido un error");
+                    //console.error(data);
+                    deferred.reject(data,status);
                 });
             }
+            return deferred.promise;
         },
 
         /*getUser: function() {

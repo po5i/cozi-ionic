@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService, $ionicHistory, Alertify) {
+.controller('AppCtrl', function($scope, $rootScope, $ionicModal, $timeout, $state, ngCart, $http, $stateParams, oauthService, $ionicHistory, Alertify, $ionicLoading) {
 
   oauthService.initialize();
 
@@ -91,7 +91,7 @@ angular.module('starter.controllers', [])
       newPromise.error(function(data, status, headers, config){      });
 
       console.log("Calificación guardada");
-      $state.go('app.request');
+      $state.go('app.history');
   }
 
   /*$scope.$watch('review_new.dish_rate', function() {
@@ -113,6 +113,10 @@ angular.module('starter.controllers', [])
           $scope.rq.dont_eat = $scope.user.profile.dont_eat;
           $scope.rq.concerns = $scope.user.profile.concerns;
           $scope.rq.allergies = $scope.user.profile.allergies;
+        },
+        function(data){
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
         });
     }
     $state.go('app.request2');  
@@ -182,10 +186,17 @@ angular.module('starter.controllers', [])
   });
 
   $scope.logout = function() {
-    oauthService.clearCache();
-    delete $scope.user;
-    $ionicHistory.clearHistory();
-    $state.go("app.request");
+    oauthService.clearCache().then(function(data){
+      delete $scope.user;
+      $ionicHistory.clearHistory();
+      $state.go("app.request");
+    },
+    function(data){
+      Alertify.error("Ha ocurido un error");
+      $ionicLoading.hide();
+    });
+
+    
   };
 
 
@@ -210,6 +221,9 @@ angular.module('starter.controllers', [])
   $scope.doLogin = function() {
     promiseB = oauthService.authenticate($scope.loginData).then(function(data) {
       
+    },function(data){
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
     });
 
     promiseB.then(function(data){
@@ -228,10 +242,13 @@ angular.module('starter.controllers', [])
           }
           
       } else {
-          $scope.error = true;
           Alertify.error("Ha ocurrido un error al ingresar con su cuenta");
       }
-    });
+    },
+        function(data){
+          Alertify.error("Ha ocurido un error al ingresar a su cuenta");
+          $ionicLoading.hide();
+        });
 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
@@ -243,11 +260,19 @@ angular.module('starter.controllers', [])
   //when the user clicks the connect twitter button, the popup authorization window opens
   $scope.connectButton = function(backend) {
       promiseB = oauthService.connectProvider(backend).then(function(data) {
+      },
+      function(data){
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
       });
 
       promiseB.then(function(data){
         oauthService.getCurrentUser().then(function(data){
           $scope.user = data;
+        },
+        function(data){
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
         });  
         $scope.modal.hide();
         if($rootScope.redirect != null){
@@ -278,6 +303,7 @@ angular.module('starter.controllers', [])
           else{
               Alertify.error("Ha ocurrido un error "+status);
           }
+          $ionicLoading.hide();
       });
 
       $scope.registerToogle = false;
@@ -347,7 +373,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService, Alertify) {
+.controller('ProfileCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService, Alertify, $ionicLoading) {
     //PROFILE
     ////////////////////
     //$scope.user = null;
@@ -355,8 +381,13 @@ angular.module('starter.controllers', [])
     //if(typeof $rootScope.auth_data !== 'undefined'){
     if ($rootScope.authenticated) {
         //get the user information
+        console.log("get user....");
         oauthService.getCurrentUser().then(function(data){
           $scope.user = data;
+        },
+        function(data){
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
         });
     }
     else{
@@ -382,7 +413,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('HistoryCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService) {
+.controller('HistoryCtrl', function($scope, $stateParams, $http, $rootScope, $state, oauthService,Alertify,$ionicLoading) {
     //PROFILE
     ////////////////////
     $scope.history = {};
@@ -392,6 +423,11 @@ angular.module('starter.controllers', [])
         //get the user information
         oauthService.getUserHistory().then(function(data){
           $scope.history = data;
+        },
+        function(data){
+
+          Alertify.error("Ha ocurido un error");
+          $ionicLoading.hide();
         });
     }
     else{
@@ -403,7 +439,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefCtrl', function($scope, $stateParams, $http, $rootScope) {
+.controller('ChefCtrl', function($scope, $stateParams, $http, Alertify, $rootScope) {
   //CHEFS
   /////////////////////
   $scope.chef_username = $stateParams.chefUsername;
@@ -436,7 +472,7 @@ angular.module('starter.controllers', [])
 
 
 
-.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal, Upload, $timeout, Alertify) {
+.controller('ChefAdminCtrl', function($scope, $stateParams, $http, $rootScope, $ionicModal, Upload, $timeout, Alertify, $ionicLoading) {
   //CHEFS
   /////////////////////
   $scope.chef_id = $rootScope.chef_id;
@@ -557,8 +593,9 @@ angular.module('starter.controllers', [])
           $scope.dish = null;     
         });
       }, function (response) {
-        //if (response.status > 0)
-          //$scope.errorMsg = response.status + ': ' + response.data;
+        if (response.status > 0)
+          Alertify.error(response.status + ': ' + response.data);
+          $ionicLoading.hide();
       });
 
       file.upload.progress(function (evt) {
@@ -607,8 +644,8 @@ angular.module('starter.controllers', [])
           $scope.dish = null;     
         });
       }, function (response) {
-        //if (response.status > 0)
-          //$scope.errorMsg = response.status + ': ' + response.data;
+        if (response.status > 0)
+          Alertify.error(response.status + ': ' + response.data);
       });
 
       file.upload.progress(function (evt) {
