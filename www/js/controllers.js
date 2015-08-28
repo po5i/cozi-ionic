@@ -381,11 +381,12 @@ angular.module('starter.controllers', [])
     //if(typeof $rootScope.auth_data !== 'undefined'){
     if ($rootScope.authenticated) {
         //get the user information
-        console.log("get user....");
+        console.log("get user 1....");
         oauthService.getCurrentUser().then(function(data){
           $scope.user = data;
         },
         function(data){
+          console.log("error....");
           Alertify.error("Ha ocurido un error");
           $ionicLoading.hide();
         });

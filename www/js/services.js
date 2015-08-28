@@ -22,6 +22,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
             userPromise.success(function(data, status, headers, config){
                 if($rootScope.chef_id = data.profile)
                     $rootScope.chef_id = data.profile.get_chef_id;
+                deferred.resolve(data);
             });
 
             userPromise.error(function(data, status, headers, config){
@@ -229,6 +230,7 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                 loginPromise.error(function(data, status, headers, config){
                     //console.error("Ha ocurrido un error");
                     //console.error(data);
+                    $rootScope.authenticated = false;
                     deferred.reject(data,status);
                 });
             }
