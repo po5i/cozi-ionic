@@ -302,8 +302,9 @@ input.dv-input-buscar {
 
 .carta-menus {
 	background-color: transparent !important;
-	margin: 10px 0px !important;
-	border-radius: none !important;
+	margin: 10px 0px 15px 0px !important;
+    border-radius: 0px !important;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -423,6 +424,7 @@ input.dv-input-buscar {
 .estrellas-agregar {
 	height: 54px;
 	padding: 15px 10px !important;
+	border: 0px !important;
 }
 
 .estrellas {
@@ -434,6 +436,10 @@ input.dv-input-buscar {
 	height: auto;
 	display: inline-block;
     text-align: right;
+}
+
+.card .item:last-child {
+	border: 0px !important;
 }
 
 #quantity {
