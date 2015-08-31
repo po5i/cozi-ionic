@@ -1,25 +1,25 @@
-<ion-view view-title="Perfil de {{chef_username}}">
+<ion-view view-title="{{chef_username}}">
   <ion-content>
 
-    <div class="list card">
+    <div class="list card carta-menus">
 
-	  <div class="item item-image">
+	  <div class="item item-image fondo-imagen">
 	    <img ng-src="{{chef.user.profile.avatar}}">
 	  </div>
 
-	  <div class="item item-avatar">
+	  <div class="item item-avatar chef-puntuacion">
 	    <h2>{{chef.user.first_name}} {{chef.user.last_name}}</h2>
 	    <p><rating ng-model="chef.rating" max="5" readonly="true"></rating></p>
 	  </div>
 
-	  <div class="item item-text-wrap">
+	  <div class="item item-text-wrap chef-desc">
 	    {{chef.bio}}
 	  </div>
 
-	  <a class="item item-icon-left balanced">
+	  <div class="item item-icon-left balanced chef-tx">
 	    <i class="icon ion-coffee"></i>
 	    {{chef.experience}}
-	  </a>
+	  </div>
 	  <!--a class="item item-icon-left balanced">
 	    <i class="icon ion-thumbsup"></i>
 	    Texto

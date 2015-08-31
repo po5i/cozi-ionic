@@ -1,63 +1,72 @@
 <ion-modal-view>
-  <ion-header-bar>
-    <h1 class="title">Iniciar sesión</h1>
+  <ion-header-bar class="header-login">
+    <h1 class="title">Iniciar Sesión</h1>
     <div class="buttons">
-      <button class="button button-clear" ng-click="closeLogin()">Cerrar</button>
+      <button class="button ion-close bt-cerrar" ng-click="closeLogin()"></button>
     </div>
   </ion-header-bar>
   <ion-content>
-    <form  ng-hide="registerToogle" name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Usuario</span>
-          <input type="text" ng-model="loginData.username" autocapitalize="none" required>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="loginData.password" required>
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Iniciar sesión</button>
-        </label>
-      </div>
-    </form>
 
-    <form ng-show="registerToogle" name="registerForm" role="form" ng-submit="registerForm.$valid && register()" novalidate>
-      <div class="list">
-        <label class="item item-input">
-          <span class="input-label">Usuario</span>
-          <input type="text" ng-model="registerData.username" autocapitalize="none" required>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Contraseña</span>
-          <input type="password" ng-model="registerData.password" required>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Nombre</span>
-          <input type="text" ng-model="registerData.first_name" required>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Apellido</span>
-          <input type="text" ng-model="registerData.last_name" required>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Email</span>
-          <input type="text" ng-model="registerData.email" required>
-        </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Registrarse</button>
-        </label>
-      </div>
-    </form>
 
-    <div class="list" ng-hide="registerToogle">
-      <div class="item">
-        <button ng-click="connectButton('facebook')" class="button button-block button-positive"><i class="icon ion-social-facebook"></i> Facebook</button>
-        <button ng-click="connectButton('google')" class="button button-block button-assertive"><i class="icon ion-social-googleplus"></i> Google</button>
-        <button class="button button-block button-balanced" type="button" ng-click="showRegister()">Registrarse</button>
-      </div>
+    <div class="list list-login">
+      <form  ng-hide="registerToogle" name="loginForm" ng-submit="loginForm.$valid && doLogin()" novalidate>
+      
+        <label class="item item-input login-input">
+          <input type="text" placeholder="Usuario" ng-model="loginData.username" autocapitalize="none" required>
+        </label>
+
+        <label class="item item-input login-input">
+          <input type="password" placeholder="Contraseña" ng-model="loginData.password" required>
+        </label>
+        <label class="item item-bt-entrar">
+          <button class="button button-block bt-entrar" type="submit">Iniciar sesión</button>
+        </label>    
+      
+
+        <div class="item item-redes-sociales">
+
+          <h2>o ingresar con tus redes sociales</h2>
+          <button ng-click="connectButton('facebook')" class="button button-block button-positive bt-facebook"><i class="icon ion-social-facebook"></i>   Facebook</button>
+          <button ng-click="connectButton('google')" class="button button-block button-assertive bt-google"><i class="icon ion-social-googleplus"></i>   Google</button>
+
+          <div class="border-registrate">
+            <button class="button button-block bt-registrarse" type="button" ng-click="showRegister()">Registrarse</button>
+          </div>
+
+        </div>
+      </form>
+
+
+        <div class="list list-mis-prefencias">
+          <form ng-show="registerToogle" name="registerForm" role="form" ng-submit="registerForm.$valid && register()" novalidate>
+        
+          <label class="item item-input item-stacked-label">
+            <span class="input-label ">Usuario</span>
+            <input type="text" ng-model="registerData.username" autocapitalize="none" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Contraseña</span>
+            <input type="password" ng-model="registerData.password" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Nombre</span>
+            <input type="text" ng-model="registerData.first_name" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Apellido</span>
+            <input type="text" ng-model="registerData.last_name" required>
+          </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">Email</span>
+            <input type="text" ng-model="registerData.email" required>
+          </label>
+      
+          <button class="button button-block bt-guardar-carrito" type="submit">Registrarse</button>
+                 
+      </form>
     </div>
 
+    </div>
 
   </ion-content>
 </ion-modal-view>
