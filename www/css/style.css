@@ -754,7 +754,7 @@ div.pie-cart-interior {
 	color: #ef7622 !important;
 	font-size: 0.9em !important;
 	font-weight: 600;
-	padding: 14px 10px 0px 0px !important;
+	padding: 14px 10px 4px 0px !important;
 }
 
 .item-input input {
@@ -765,28 +765,28 @@ div.pie-cart-interior {
     height: 28px;
 }
 
-.item-input input::-webkit-input-placeholder {
+.item-input input, textarea::-webkit-input-placeholder {
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;
 }
 
-.item-input input:-moz-placeholder { /* Firefox 18- */
+.item-input input, textarea:-moz-placeholder { /* Firefox 18- */
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;  
 }
 
-.item-input input::-moz-placeholder {  /* Firefox 19+ */
+.item-input input, textarea::-moz-placeholder {  /* Firefox 19+ */
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;  
 }
 
-.item-input input:-ms-input-placeholder {  
+.item-input input, textarea:-ms-input-placeholder {  
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
@@ -1039,4 +1039,18 @@ input:required {
 
 .suscrip-tx p {
 	white-space: normal;
+}
+
+.item-stacked-label textarea {
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding: 5px;
+    border: none;
+    background-color: #fff8f3;
+    height: 70px;
+    font-size: 0.9em;
+}
+
+ul {
+    padding: 4px 0px 10px 0px;
 }
