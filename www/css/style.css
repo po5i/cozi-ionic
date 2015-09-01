@@ -1030,3 +1030,13 @@ input:required {
 .bt-facebook {
 	background-color: #3b5998 !important;
 }
+
+
+.suscrip-tx {
+	border: 0 !important;
+	margin: 1px;
+}
+
+.suscrip-tx p {
+	white-space: normal;
+}
