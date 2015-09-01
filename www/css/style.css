@@ -301,7 +301,7 @@ input.dv-input-buscar {
 }
 
 .carta-menus {
-	background-color: transparent !important;
+	background-color: white !important;
 	margin: 10px 0px 15px 0px !important;
     border-radius: 0px !important;
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
@@ -513,6 +513,14 @@ input.dv-input-buscar {
 	padding: 10px 2px;
 	border: none;
 	border-top: 1px dotted #ddd;
+	white-space: normal;
+}
+
+.bio-chef p {
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /******* TAMAÑO DE LAS ESTRELLAS DE CALIFICACION******/
@@ -870,10 +878,41 @@ input:required {
 .chef-desc {
 	padding: 15px;
 	color: #666;
+	font-size: 15px;
+	font-weight: 300;
+	border: 0px;
+	border-top: 1px solid #ddd;
+}
+
+.chef-exp {
 	font-size: 14px;
+    font-style: italic;
+    font-weight: 300;
+    padding: 15px 15px 15px 54px;
+    color: #2bbc69;
+    word-break: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+    margin: 0px 10px !important; 
+    border-top: 1px dotted #ddd !important; 
+}
+
+.centro-tx {
+	text-align: center;
+}
+
+.endorsement p {
+	color: #2bbc69;
+	font-size: 0.9em;
 	font-weight: 300;
 }
 
+.endorsement h2 {
+	color: #666;
+	font-size: 1em;
+	font-weight: bold;
+	text-transform: uppercase;
+}
 
 
 /******* LOGIN *** LOGIN *** LOGIN *** LOGIN *** LOGIN *** LOGIN ******/
@@ -939,7 +978,7 @@ input:required {
 }
 
 .bt-entrar {
-	width: 60% !important;
+	width: 75% !important;
 	margin-bottom: 0px !important;
 	margin: 0px auto !important;
 	border: 0px !important;
@@ -957,7 +996,7 @@ input:required {
 .item.item-redes-sociales {
 	border: 0px !important;
 	border-top: 1px dotted #ddd !important;
-	padding: 8px 0px 20px 0px !important;
+	padding: 8px 0px 10px 0px !important;
 	text-align: center;
 }
 
@@ -975,7 +1014,7 @@ input:required {
 	padding-top: 15px;
 }
 
-.bt-facebook, .bt-google, .bt-registrarse {
+.bt-facebook, .bt-google, .bt-registrarse, .bt-twitter, .bt-instagram, .bt-linkedin {
 	color: white;
 	width: 75% !important;
 	border: 0px !important;
@@ -986,4 +1025,8 @@ input:required {
 
 .bt-registrarse {
 	background-color: #2bbc69 !important;
+}
+
+.bt-facebook {
+	background-color: #3b5998 !important;
 }

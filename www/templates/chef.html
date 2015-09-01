@@ -16,7 +16,7 @@
 	    {{chef.bio}}
 	  </div>
 
-	  <div class="item item-icon-left balanced chef-tx">
+	  <div class="item item-icon-left balanced chef-exp">
 	    <i class="icon ion-coffee"></i>
 	    {{chef.experience}}
 	  </div>
@@ -25,28 +25,27 @@
 	    Texto
 	  </a-->
 	  
-	  <a class="item item-icon-left assertive" href="#/app/request2">
-	    <i class="icon ion-social-facebook"></i>
-	    {{chef.facebook}}
-	  </a>
-	  <a class="item item-icon-left assertive" href="#/app/request2">
-	    <i class="icon ion-social-twitter"></i>
-	    @{{chef.twitter}}
-	  </a>
-	  <a class="item item-icon-left assertive" href="#/app/request2">
-	    <i class="icon ion-social-linkedin"></i>
-	    {{chef.linkedin}}
-	  </a>
-	  <a class="item item-icon-left assertive" href="#/app/request2">
-	    <i class="icon ion-social-instagram-outline"></i>
-	    {{chef.instagram}}
-	  </a>
+	  <div class="item item-redes-sociales">
+  
+  	    <button class="button button-block bt-facebook" href="#/app/request2">
+  	      <i class="icon ion-social-facebook"></i>   	{{chef.facebook}}
+  	    </button>
+  	    <button class="button button-block button-calm bt-twitter" href="#/app/request2">
+  	      <i class="icon ion-social-twitter"></i>   	@{{chef.twitter}}
+  	    </button>
+  	    <button class="button button-block button-positive bt-linkedin" href="#/app/request2">
+  	      <i class="icon ion-social-linkedin"></i>   	{{chef.linkedin}}
+  	    </button>
+  	    <button class="button button-block button-dark bt-instagram" href="#/app/request2">
+  	      <i class="icon ion-social-instagram-outline"></i>   	{{chef.instagram}}
+  	    </button>
+	  </div>
 	  
-	  <div class="item item-text-wrap">
+	  <div class="item item-text-wrap centro-tx">
 	    <div class="endorsement" ng-repeat="endorsement in endorsements">
-		    <p>{{endorsement.endorsement}}</p>
-		    <p><b>{{endorsement.user.first_name}} {{endorsement.user.last_name}}</b></p>
-		    <p>&nbsp;</p>
+	  	    <p>+ + + + + {{endorsement.endorsement}} + + + + +</p>
+	  	    <h2><b>{{endorsement.user.first_name}} {{endorsement.user.last_name}}</b></h2>
+	  	    <p>&nbsp;</p>
 	    </div>
 	  </div>
 
