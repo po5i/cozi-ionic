@@ -757,40 +757,43 @@ div.pie-cart-interior {
 	padding: 14px 10px 4px 0px !important;
 }
 
-.item-input input {
-	color: #666 !important;
-    font-size: 0.9em;
-    font-weight: normal;
-    padding: 2px 0px 0px 0px;
-    height: 28px;
-}
 
-.item-input input, textarea::-webkit-input-placeholder {
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;
 }
 
-.item-input input, textarea:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder, textarea:-moz-placeholder { /* Firefox 18- */
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;  
 }
 
-.item-input input, textarea::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder, textarea::-moz-placeholder {  /* Firefox 19+ */
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;  
 }
 
-.item-input input, textarea:-ms-input-placeholder {  
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {  
    color: #ccc;
    font-size: 0.95em;
    font-weight: 300;
    font-style: italic;  
+}
+
+.item-input input {
+	color: #666;
+    font-size: 0.9em;
+    font-weight: 600;
+    font-style: normal;
+    padding: 2px 0px 0px 0px;
+    height: 28px;
 }
 
 .list.list-confirmacion {
@@ -1014,22 +1017,41 @@ input:required {
 	padding-top: 15px;
 }
 
+.bt-facebook i, .bt-twitter i, .bt-instagram i, .bt-google i {
+	position: absolute;
+    left: 5px;
+    top: 0px;
+    width: 50px;
+    border-right: 2px solid #fff;
+    text-align: center;
+}
+
 .bt-facebook, .bt-google, .bt-registrarse, .bt-twitter, .bt-instagram, .bt-linkedin {
 	color: white;
+	font-size: 0.9em;
+	font-weight: normal;
 	width: 75% !important;
 	border: 0px !important;
 	border-radius: 30px;
 	margin: 10px auto !important;
 	min-height: 42px !important;
+	text-align: center;
+	padding-left: 57px;
 }
 
 .bt-registrarse {
 	background-color: #2bbc69 !important;
+	padding-left: 12px !important;
 }
 
 .bt-facebook {
 	background-color: #3b5998 !important;
 }
+
+.bt-instagram {
+	background-color: #125688 !important;
+}
+
 
 
 .suscrip-tx {
@@ -1048,7 +1070,9 @@ input:required {
     border: none;
     background-color: #fff8f3;
     height: 70px;
+    color: #666;
     font-size: 0.9em;
+    font-weight: 600;
 }
 
 ul {
