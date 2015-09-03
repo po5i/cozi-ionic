@@ -206,7 +206,6 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
         },*/
         clearCache: function() {
             var deferred = $q.defer();
-            $rootScope.authenticated = false;
             if(typeof $rootScope.auth_data !== 'undefined'){
                 var loginPromise = $http.get($rootScope.api_url+'/api-token/logout/',{                        
                     headers: {'Authorization': "Token "+$rootScope.auth_data.token}
@@ -219,21 +218,19 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
                     else{
                         //OAuth.clearCache();
                         authorizationResult = false;
-                        
                         delete $rootScope.auth_data;
-                        $rootScope.authenticated = false;
-                        localStorageService.clearAll();
-                        
                     }  
                     deferred.resolve(data);
                 });
                 loginPromise.error(function(data, status, headers, config){
                     //console.error("Ha ocurrido un error");
                     //console.error(data);
-                    $rootScope.authenticated = false;
                     deferred.reject(data,status);
                 });
+
             }
+            $rootScope.authenticated = false;
+            localStorageService.clearAll();
             return deferred.promise;
         },
 
@@ -260,3 +257,16 @@ angular.module('oauthApp.services', []).factory('oauthService', function($q, $ht
     
 });
 
+
+
+
+angular.module('momentFilter', [])
+.filter('moment', function() {
+  return function(input) {
+    input = input || '';
+    
+    var out = moment(input).fromNow();
+    
+    return out;
+  };
+})

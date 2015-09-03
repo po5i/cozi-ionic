@@ -10,7 +10,7 @@
 	      <img ng-src="{{request.dish.photo}}">
 	      <h2>{{request.user.first_name}} {{request.user.last_name}}</h2>
 	      <p><strong>Estado:</strong> {{request.status}}</p>
-	      <p><strong>Cuándo:</strong> {{request.date}}</p>
+	      <p><strong>Cuándo:</strong> {{request.date | moment}}</p>
 	      <p><strong>Tipo:</strong> {{request.type}}</p>
 	      <p><strong>Porciones:</strong> {{request.servings}}</p>
 	      <p><strong>Direccion:</strong> {{request.address}}</p>

@@ -10,7 +10,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule', 'ionic.rating', 'ngFileUpload','ngAnimate', 'Alertify'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.services', 'LocalStorageModule', 'ionic.rating', 'ngFileUpload','ngAnimate', 'Alertify', 'momentFilter'])
 
 .run(function($ionicPlatform, localStorageService, $rootScope, $ionicLoading) {
   $ionicPlatform.ready(function() {
@@ -27,6 +27,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCart', 'oauthApp.s
       StatusBar.statusBarOverlaysWebView = false;
       StatusBar.backgroundColorByHexString("#D66B22");
     }
+
+    moment.locale('es');
 
     if(typeof window.OAuth !== 'undefined'){
       $rootScope.OAuth = window.OAuth;
