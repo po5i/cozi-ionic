@@ -1,18 +1,24 @@
 <ion-view view-title="Historial">
-  <ion-content>
+  	<ion-content>
     
-  	<div class="item item-ordenando">
-	    <a class="item item-thumbnail-left" href="#" ng-repeat="request in history">
-	      <img ng-src="{{request.dish.photo}}">
-	      <h2>{{request.dish.name}}</h2>
-	      <p>{{request.dish.chef.user.first_name}} {{request.dish.chef.user.last_name}}</p>
-	      <p>{{request.date}}</p>
-	      <p><strong>Estado:</strong> {{request.status}}</p>
-	      <button ng-show="!request.reviewed" class="button button-small button-balanced" ng-click="review({{request.id}},{{request.dish.chef.id}},{{request.dish.id}})">
-		    <i class="icon ion-android-star"></i> Calificar
-		  </button>
-	    </a>
-	</div>
+  	
+	    <div class="item item-ordenando" href="#" ng-repeat="request in history">
+	    	<div class="item item-divider divider-histo">
+	    		<i class="icon ion-ios-bookmarks"></i><h2>{{request.dish.name}}</h2>
+	    	</div>
+	    	<div class="item item-thumbnail-left item-historial">
+	      		<img ng-src="{{request.dish.photo}}">
+	     		
+	      		<h3>{{request.dish.chef.user.first_name}} {{request.dish.chef.user.last_name}}</h3>
+	      		<h4><strong>Estado:</strong> {{request.status}}</h4>
+	     		<p>{{request.date}}</p>
+	
+		      	<button ng-show="!request.reviewed" class="button button-small button-balanced bt-calificar" ng-click="	review({{request.id}},{{request.dish.chef.id}},{{request.dish.id}})">	
+		    		<i class="icon ion-android-star"></i> Calificar
+		  		</button>
+		  	</div>
+	    </div>
+	
 
-  </ion-content>
+ 	 </ion-content>
 </ion-view>
