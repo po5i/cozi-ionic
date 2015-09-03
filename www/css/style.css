@@ -578,7 +578,7 @@ ul.rating li i {
 	border: none;
 	background-color: white;
 	padding: 5px 0px 15px 0px !important;
-	margin: 10px 0px 15px 0px!important;
+	margin: 10px 0px 5px 0px!important;
 	box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -592,6 +592,7 @@ ul.rating li i {
 	font-weight: bold;
 	padding: 10px;
 	text-align: center;
+	margin: 0;
 }
 
 .item.item-divider i {
@@ -928,6 +929,7 @@ input:required {
 	background-color: #ef7622 !important;
 	height: 60px;
 	background-image: none !important;
+	border: 0px;
 }
 
 .header-login h1 {
@@ -1077,4 +1079,69 @@ input:required {
 
 ul {
     padding: 4px 0px 10px 0px;
+}
+
+
+/********** ITEM HISTORIAL *** ITEM HISTORIAL *** ITEM HISTORIAL **********/
+/********** ITEM HISTORIAL *** ITEM HISTORIAL *** ITEM HISTORIAL **********/
+/********** ITEM HISTORIAL *** ITEM HISTORIAL *** ITEM HISTORIAL **********/
+/********** ITEM HISTORIAL *** ITEM HISTORIAL *** ITEM HISTORIAL **********/
+/********** ITEM HISTORIAL *** ITEM HISTORIAL *** ITEM HISTORIAL **********/
+.item.item-divider.divider-histo {
+	background-color: transparent;
+	border: none !important;
+	border-bottom: 1px solid #ddd !important;
+	color: #ef7521 !important;
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	padding-left: 40px;
+	text-align: left;
+	margin: 0;
+}
+
+
+.item.item-divider h2 {
+	color: #666 !important;
+	font-size: 16px !important;
+	font-weight: bold;
+	text-transform: uppercase;
+
+}
+
+.item.item-historial {
+	border: 0px;
+	margin: 0px !important;
+	padding: 15px 15px 0px 15px !important;
+	padding-left: 120px !important;
+}
+
+.item.item-historial img {
+	max-width: 100px !important;
+	max-height: 100px !important;	
+}
+
+.item.item-historial h3 {
+	color: #2bbc69 !important;
+	font-size: 15px !important;
+	font-weight: bold;
+}
+.item.item-historial h4 {
+	color: #ef7622 !important;
+	font-size: 14px !important;
+}
+
+.item.item-historial p {
+	color: #666 !important;
+	font-size: 0.85em !important;
+	font-style: italic;
+}
+
+.bt-calificar {
+	background-color: #2bbc69 !important; 
+	border-radius: 20px !important;
+	padding: 0px 12px;
+    border: 0;
+    font-size: 0.8em;
 }
